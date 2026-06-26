@@ -1,0 +1,33 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - SIMULATION_MODE=PRE_INCIDENT
+      - DATABASE_URL=sqlite:///./sentinel.db
+      - CHROMA_PERSIST_DIR=./chroma_db
+    volumes:
+      - ./backend/sentinel.db:/app/sentinel.db
+      - ./backend/chroma_db:/app/chroma_db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      - VITE_API_URL=http://localhost:8000
+      - VITE_WS_URL=ws://localhost:8000
+
+networks:
+  default:
+    name: sentinel-network

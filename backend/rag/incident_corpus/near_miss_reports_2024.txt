@@ -1,0 +1,14 @@
+INTERNAL SAFETY AUDIT & NEAR-MISS COMPILATION (2024)
+Facility: Pradhan Integrated Steel Works, Bokaro / Dhanbad Belt, Jharkhand
+
+NEAR-MISS #NM-2024-042 (March 12, 2024):
+Gas detector alarm on Coke Oven Battery #1 registered H2S spike to 12 ppm. Night shift operators ignored the alarm for 45 minutes assuming detector malfunction. A contractor crew approached to execute scaffold erection without personal portable H2S badges. Work halted only when a passing safety inspector noticed the blinking beacon.
+
+NEAR-MISS #NM-2024-089 (June 5, 2024):
+Hot Work PTW #HW-102 was issued for pipeline bracket welding in Blast Furnace Area. Downstream chemical yard ammonia header had an unlogged weeping valve. Welding sparks fell within 8 meters of ammonia vapor plume. Fortunately, wind direction shifted rapidly away from the welding arc.
+
+NEAR-MISS #NM-2024-115 (August 22, 2024):
+Technician entered Chemical Storage Acid Tank #3 for internal inspection. Standby watcher left portal for 20 minutes to retrieve paperwork. Air line pressure dropped. Technician exited self-assisted feeling dizzy. Violation of mandatory continuous standby presence per OISD-STD-105 Clause 6.4.
+
+NEAR-MISS #NM-2024-162 (November 10, 2024):
+During shift changeover (14:00 hrs), primary scrubber pump tripped. Outgoing crew logged event on paper memo but failed to enter into central ERP. Incoming maintenance team initiated electrical LOTO on backup pump, leaving scrubbing unit entirely without scrubbing liquor flow for 40 mins.

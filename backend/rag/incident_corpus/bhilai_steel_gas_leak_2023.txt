@@ -1,0 +1,20 @@
+DANGEROUS OCCURRENCE & INJURY REPORT
+Location: Bhilai Steel Plant (SAIL), Chhattisgarh
+Date of Incident: October 8, 2023
+Affected Unit: Blast Furnace Gas Cleaning Plant (GCP)
+Injuries: 3 Workers Hospitalized (Acute CO Toxicity)
+
+INCIDENT DESCRIPTION:
+During flange tightening maintenance near Blast Furnace #8 GCP, a sudden surge in Blast Furnace gas (rich in Carbon Monoxide and Hydrocarbons) escaped from a corroded gasket. Simultaneously, a contractor crew was performing welding (Hot Work PTW #HW-881) only 12 meters away on an elevated pipeline structure.
+
+GAS READINGS AT INCIDENT TIME:
+- CO Concentration: Spiked to 320 ppm within 90 seconds.
+- Methane/Hydrocarbon (% LEL): Registered 35% LEL.
+- Distance to Ignition Source: 12 meters (Violation of mandatory 15-meter buffer).
+
+CONTRIBUTING FACTORS:
+1. Simultaneous Adjacent Operations (SIMOPS): Hot work permit was approved without verifying downstream flange integrity in the adjacent zone.
+2. Lack of Spatial Risk Mapping: Safety officers evaluated work requests on a zone-by-zone isolation basis without calculating radial proximity hazards across zone borders.
+
+REGULATORY BREACH:
+OISD-STD-018 Clause 8.1 strictly prohibits hot work within 15 meters of any potential hydrocarbon or flammable gas release source without positive mechanical blanking.

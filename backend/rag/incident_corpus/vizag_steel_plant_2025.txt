@@ -1,0 +1,22 @@
+FATALITY INCIDENT INVESTIGATION REPORT
+Location: Visakhapatnam Steel Plant (Rashtriya Ispat Nigam Ltd), Andhra Pradesh
+Date of Incident: January 12, 2025
+Affected Unit: Coke Oven Battery #3 Gas Header
+Fatalities: 8 Contract Workers | Severe Injuries: 4
+
+EXECUTIVE SUMMARY:
+On January 12, 2025, during scheduled maintenance work inside the confined header chamber of Coke Oven Battery #3, an undetected accumulation of Hydrogen Sulfide (H2S) and Carbon Monoxide (CO) asphyxiated 8 workers. Although localized gas detectors registered warning spikes (H2S at 14.5 ppm, CO at 65 ppm) 40 minutes prior to the fatal asphyxiation, no automated safety intelligence layer correlated these readings with the active Confined Space entry permit.
+
+TIMELINE & SCADA READINGS:
+- 13:30 hrs: Shift handover completed. Maintenance contractor team issued Confined Space PTW #CS-9942.
+- 14:10 hrs: Local SCADA sensor COB3-GAS-02 registered H2S climb from 3.0 ppm to 14.5 ppm (Warning Threshold = 10 ppm). Alarm beep silenced locally by operators assuming routine calibration spike.
+- 14:35 hrs: Ventilation blower tripped due to electrical fluctuation. SCADA logged blower status 'OFF'.
+- 14:50 hrs: Workers collapsed inside header chamber. Standby person entered without SCBA gear and collapsed.
+
+ROOT CAUSE ANALYSIS:
+1. Data Silos: SCADA gas telemetry and digital PTW registry operated on completely separate software networks. The safety officer issuing the permit had no real-time dashboard showing the rising gas trajectory.
+2. Failure to Detect Compound Risk: While H2S at 14.5 ppm was below the isolated lethal threshold (100 ppm), the compound interaction of elevated CO, tripped forced ventilation, and physical confined space restriction created a 100% fatal atmospheric trap.
+3. Violation of OISD-STD-105 Clause 6.3: Mandatory continuous remote gas monitoring during confined space occupancy was substituted with intermittent manual testing.
+
+PREVENTIVE RECOMMENDATIONS:
+Implement an AI-fused compound risk intelligence layer (SENTINEL AI protocol) capable of auto-revoking active permits and triggering remote sirens when multi-sensor compound risk scores exceed 0.75.

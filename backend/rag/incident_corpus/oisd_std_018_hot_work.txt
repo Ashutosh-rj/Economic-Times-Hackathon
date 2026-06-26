@@ -1,0 +1,12 @@
+OIL INDUSTRY SAFETY DIRECTORATE (OISD) STANDARD
+OISD-STD-018: FIRE PROTECTION IN REFINERIES & PROCESS PLANTS
+Section 8: Precautions for Hot Work Operations
+
+Clause 8.1: Buffer Distance & Blanking
+Hot work (welding, cutting, grinding, brazing) shall not be permitted within 15 meters of any operating vessel, valve, sewer drain, or sampling point handling flammable hydrocarbons, unless positive mechanical isolation (spade/blind) is installed and gas-free clearance is issued.
+
+Clause 8.2: Combustible Gas Monitoring
+A certified explosive gas test must be executed immediately before igniting torch or arc. Atmospheric readings must register 0% LEL. If CH4 or hydrocarbon gas exceeds 10% LEL in adjacent process areas, all active hot work permits within radial line of sight shall be automatically suspended.
+
+Clause 8.3: Dedicated Fire Watch
+A dedicated fire watch equipped with pressurized dry chemical extinguishers and fire water hose line must remain stationed at the hot work site during execution and for 30 minutes following work cessation.

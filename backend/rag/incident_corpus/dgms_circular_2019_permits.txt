@@ -1,0 +1,11 @@
+DIRECTORATE GENERAL OF MINES SAFETY (DGMS)
+DGMS Technical Circular No. 2019-08
+Subject: Protocol for Managing Simultaneous Operations (SIMOPS) in Industrial & Metallurgical Facilities
+
+1. BACKGROUND:
+Review of fatal accidents between 2015 and 2018 indicated that 34% of major fires and gas explosions occurred when contractor groups executed simultaneous conflicting permits (e.g. Hot Work and Confined Space inspection) in adjacent plant zones without coordinated supervision.
+
+2. MANDATORY PROTOCOL:
+(a) Simultaneous Operations Registry: Facilities must implement a centralized digital interlock system. If 3 or more permits are active in the same or adjacent operational zones, the platform must flag a high-severity SIMOPS alert.
+(b) Dedicated Safety Supervision: Whenever simultaneous Hot Work and Confined Space permits operate in adjacent zones, a minimum of 2 certified Safety Officers must remain physically stationed on site.
+(c) Positive Isolation Verification: All flammable gas headers and electrical feeds must be locked out and tagged out (LOTO) with digital timestamp verification prior to work commencement.

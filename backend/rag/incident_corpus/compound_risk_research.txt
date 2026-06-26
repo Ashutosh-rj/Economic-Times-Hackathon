@@ -1,0 +1,11 @@
+INDUSTRIAL SAFETY INTELLIGENCE RESEARCH PAPER (FICCI / IIT BOMBAY 2024 SURVEY)
+Title: Quantitative Analysis of Compound Risk Vectors in Indian Heavy Industry (2015-2024)
+
+STATISTICAL FINDINGS:
+Analysis of 1,420 industrial accidents across Indian metallurgical, refining, and chemical manufacturing sectors revealed a critical blindspot in traditional single-sensor safety engineering:
+1. Fatality Multiplier: Compound risk conditions (defined as the simultaneous occurrence of 2 or more minor hazard deviations across adjacent equipment or shift boundaries) are 6.3x more likely to result in worker fatalities than single-factor catastrophic failures.
+2. Lead Time Window: In 88% of fatal gas asphyxiation and explosion incidents reviewed, isolated telemetry telemetry spikes (such as sub-lethal H2S or minor pressure fluctuations) existed in plant historians for an average of 42 to 65 minutes prior to fatal incident propagation.
+3. Human Error at Shift Changeover: 29% of severe industrial accidents occurred within ±30 minutes of shift handover windows due to documentation gaps and uncoordinated maintenance isolation.
+
+CONCLUSION:
+Zero-Harm Operations cannot be achieved by lowering individual sensor alarm thresholds (which dramatically increases operator alarm fatigue and false positive silencing). Instead, facilities must deploy compound artificial intelligence correlation graphs capable of synthesizing cross-zone IoT telemetry, digital PTW permits, and worker location density in real time.

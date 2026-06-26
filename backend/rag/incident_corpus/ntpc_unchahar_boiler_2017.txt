@@ -1,0 +1,15 @@
+MAJOR INDUSTRIAL DISASTER INVESTIGATION
+Location: NTPC Feroze Gandhi Unchahar Thermal Power Plant, Raebareli, Uttar Pradesh
+Date of Incident: November 1, 2017
+Affected Unit: Unit 6 (500 MW) Economizer Boiler Hopper
+Fatalities: 43 Workers | Burn Injuries: 100+
+
+CATASTROPHIC SEQUENCE:
+During commercial power generation, heavy ash clinker buildup blocked the bottom ash hopper of Unit 6. While operational engineers attempted manual poking and clearing from adjacent access doors, boiler furnace draft pressure spiked violently to 350 mmwc. The economizer duct structure ruptured catastrophically, unleashing high-pressure superheated flue gas (temperature > 250°C) and boiling ash across adjacent maintenance floors.
+
+COMPOUND FAILURE PATTERN:
+1. High Worker Density: Over 50 contract workers were performing scaffolding and insulation work in adjacent zones directly under the economizer duct.
+2. Simultaneous Conflicting Permits: Multiple mechanical maintenance permits were issued for adjacent zones without establishing an emergency exclusion cordon around the over-pressurized boiler unit.
+
+LESSONS LEARNED:
+When critical process telemetry (e.g., boiler draft pressure or vibration) approaches maximum allowable working limits, all routine maintenance permits within a 50-meter radius must be automatically suspended by plant supervisory systems.

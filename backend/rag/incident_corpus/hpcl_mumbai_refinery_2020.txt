@@ -1,0 +1,14 @@
+FATALITY REPORT — PROCESS UPSET DURING SHIFT CHANGEOVER
+Location: HPCL Mumbai Refinery, Mahul, Maharashtra
+Date of Incident: August 14, 2020
+Affected Unit: Diesel Hydrotreater (DHT) Sump Chamber
+Fatalities: 2 Refinery Technicians
+
+DETAILS OF INCIDENT:
+At 22:15 hrs, during the night shift handover window, process upset caused sour water backup into the closed drainage sump. Two incoming technicians entered the sump chamber to manually unblock a suction strainer. Within 3 minutes, lethal levels of Hydrogen Sulfide (H2S > 150 ppm) outgassed from the agitated sludge. Both technicians collapsed instantly.
+
+SHIFT CHANGEOVER VULNERABILITY:
+Investigation revealed that incoming shift personnel were not briefed on the ongoing upstream pressure instability due to incomplete handover logsheets. The equipment was technically listed as 'under maintenance' by outgoing crew, but digital interlocks were bypassed.
+
+STATUTORY VIOLATION:
+Factory Act Section 36 (Precautions against dangerous fumes) mandates that no person shall enter any chamber, tank, or pipe where dangerous fumes are likely to be present to such an extent as to involve risk of persons being overcome, unless positive breathing apparatus is worn and certified gas-free clearance is digitally verified.

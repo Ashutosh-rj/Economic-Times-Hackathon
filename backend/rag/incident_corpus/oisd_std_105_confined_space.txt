@@ -1,0 +1,18 @@
+OIL INDUSTRY SAFETY DIRECTORATE (OISD) STANDARD
+OISD-STD-105: WORK PERMIT SYSTEM IN OIL AND GAS INDUSTRY
+Section 6: Confined Space Entry Requirements
+
+Clause 6.1: Definition of Confined Space
+Any vessel, tank, reactor, column, sewer, pit, or vessel skirt having limited means of entry and exit and not designed for continuous occupancy.
+
+Clause 6.2: Pre-Entry Atmospheric Testing
+No vessel shall be entered until continuous multi-gas sampling confirms:
+(a) Oxygen content is between 19.5% and 23.5% by volume.
+(b) Flammable vapors (CH4/Hydrocarbons) do not exceed 5% of Lower Explosive Limit (LEL).
+(c) Toxic gases do not exceed Permissible Exposure Limit (H2S < 10 ppm, CO < 35 ppm, NH3 < 25 ppm).
+
+Clause 6.3: Continuous Monitoring & Ventilation
+During occupancy, continuous mechanical forced ventilation must be maintained. Continuous multi-sensor atmospheric telemetry must be linked to an external safety panel. If toxic gas concentration reaches 50% of threshold limit value or mechanical ventilation trips, all workers must evacuate immediately.
+
+Clause 6.4: Standby Person & Rescue
+A trained standby safety watcher equipped with SCBA gear and lifeline communication must be stationed physically outside the confined entry portal at all times.

@@ -1,0 +1,15 @@
+THE FACTORIES ACT, 1948 (MINISTRY OF LABOUR & EMPLOYMENT, GOVT OF INDIA)
+Chapter IV: Safety & Chapter IV-A: Provisions Relating to Hazardous Processes
+
+Section 36: Precautions against dangerous fumes, gases, and dusts
+(1) No person shall be required or allowed to enter any chamber, tank, vat, pit, pipe, flue, or other confined space in any factory in which any gas, fume, vapor, or dust is likely to be present to such an extent as to involve risk to persons being overcome, unless it is provided with a manhole of adequate dimensions or other effective means of egress.
+(2) No person shall enter unless positive mechanical exhaust is running and certified chemical testing verifies toxic concentrations are within occupational safe thresholds.
+
+Section 41-B: Compulsory Disclosure of Information by Occupier
+The occupier of every factory involving a hazardous process shall disclose all accurate information regarding dangers, health hazards, and emergency action plans to workers, chief inspector, and local municipality.
+
+Section 41-C: Specific Responsibility of Occupier in relation to Hazardous Processes
+Every occupier shall maintain accurate medical and health records of workers exposed to hazardous chemicals and employ certified Safety Officers.
+
+Section 41-G: Workers' Participation in Safety Management
+The occupier shall set up a bipartisan Safety Committee consisting of equal representation of management and workers to actively review dangerous occurrences and compound operational hazards.

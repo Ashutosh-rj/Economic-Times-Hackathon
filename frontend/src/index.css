@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-sentinel-primary text-sentinel-text;
+  }
+}
+
+/* Custom scrollbar for dark industrial command room */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0F1923;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E3048;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6B8096;
+}
