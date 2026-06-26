@@ -96,7 +96,17 @@ def evaluate_compound_risks(
         if bf1_ch4 >= 25.0 or simulation_mode == "INCIDENT":
             triggered_rules.append(COMPOUND_RULES[1])  # CR-002
             base_score = min(0.95, base_score + 0.35)
-        if shift_status.get("changeover_active", False) or simulation_mode == "INCIDENT":
+        # Evaluate active maintenance work orders from SAP CMMS
+        active_cmms = maintenance_log if maintenance_log else []
+        if not active_cmms:
+            try:
+                from core.cmms_stream import cmms_stream
+                active_cmms = cmms_stream.get_active_work_orders(simulation_mode)
+            except Exception:
+                pass
+        has_active_maint = any(wo.get("status") == "IN_PROGRESS" for wo in active_cmms)
+
+        if shift_status.get("changeover_active", False) or has_active_maint or simulation_mode == "INCIDENT":
             triggered_rules.append(COMPOUND_RULES[2])  # CR-003
             base_score = min(0.95, base_score + 0.20)
         if len(active_permits) >= 2 or simulation_mode == "INCIDENT":

@@ -50,3 +50,45 @@ async def get_zone_risk(zone_id: str):
         "active_rules": [r["id"] for r in COMPOUND_RULES if "COB" in r.get("historical_incident", "")],
         "workers_at_risk": 6 if "COB" in zone_id else 4
     }
+
+@router.get("/analytics/false-negatives")
+async def get_false_negatives_benchmark():
+    from eval.eval_harness import FalseNegativeEvalHarness
+    return FalseNegativeEvalHarness.run_benchmark()
+
+@router.get("/geospatial/geojson")
+async def get_facility_geojson():
+    from core.geospatial import generate_geojson_overlay
+    from core.sensor_simulator import sensor_simulator
+    return generate_geojson_overlay(
+        risk_score=sensor_simulator.compound_risk_score,
+        wind_bearing=135,
+        wind_speed_kmh=14.5
+    )
+
+@router.get("/graph/topology")
+async def get_knowledge_graph():
+    from core.knowledge_graph import EquipmentPermitRiskGraph
+    return EquipmentPermitRiskGraph.get_graph_topology()
+
+@router.get("/cmms/orders")
+async def get_cmms_orders():
+    from core.cmms_stream import cmms_stream
+    from core.sensor_simulator import sensor_simulator
+    return cmms_stream.get_active_work_orders(sensor_simulator.mode)
+
+@router.get("/cctv/analytics")
+async def get_cctv_analytics():
+    from core.cctv_stream import cctv_stream
+    from core.sensor_simulator import sensor_simulator
+    return cctv_stream.get_latest_vision_analytics(sensor_simulator.mode)
+
+@router.get("/compliance/audit")
+async def get_statutory_compliance_audit():
+    from agents.compliance_agent import compliance_audit_agent
+    from core.sensor_simulator import sensor_simulator
+    return compliance_audit_agent.audit_facility_compliance(sensor_simulator.mode)
+
+
+
+

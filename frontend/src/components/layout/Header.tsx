@@ -5,9 +5,10 @@ import { useAlertStore } from '../../store/alertStore';
 
 interface HeaderProps {
   onOpenDemoModal: () => void;
+  onOpenGraphModal?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenDemoModal }) => {
+export const Header: React.FC<HeaderProps> = ({ onOpenDemoModal, onOpenGraphModal }) => {
   const isConnected = useSensorStore((state) => state.isConnected);
   const mode = useSensorStore((state) => state.simulationMode);
   const unackCount = useAlertStore((state) => state.alerts.filter(a => !a.acknowledged).length);
@@ -38,7 +39,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenDemoModal }) => {
       </div>
 
       {/* Right controls */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3">
         {/* Connection indicator */}
         <div className="flex items-center gap-2 px-3 py-1.5 bg-sentinel-primary rounded-lg border border-sentinel-border">
           {isConnected ? (
@@ -61,6 +62,16 @@ export const Header: React.FC<HeaderProps> = ({ onOpenDemoModal }) => {
           )}
         </div>
 
+        {/* Knowledge Graph CTA */}
+        {onOpenGraphModal && (
+          <button
+            onClick={onOpenGraphModal}
+            className="px-3 py-2 bg-blue-600/20 hover:bg-blue-600 text-blue-300 hover:text-white border border-blue-500/40 rounded-lg text-xs font-mono font-bold transition-all"
+          >
+            🕸 Ontology Graph
+          </button>
+        )}
+
         {/* Demo Toggle CTA */}
         <button
           onClick={onOpenDemoModal}
@@ -73,3 +84,4 @@ export const Header: React.FC<HeaderProps> = ({ onOpenDemoModal }) => {
     </header>
   );
 };
+

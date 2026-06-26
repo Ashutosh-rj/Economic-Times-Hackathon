@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments & local packages
+venv/
+env/
+.env
+.env.*
+
+# Database & Vector Store persistence
+*.db
+*.sqlite3
+sentinel.db
+chroma_db/
+
+# PyTest / Linting caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

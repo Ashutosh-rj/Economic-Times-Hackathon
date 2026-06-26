@@ -18,10 +18,34 @@ class SentinelState(TypedDict, total=False):
     emergency_report: Optional[dict]
     current_risk_score: float
     alerts_to_emit: list
+    compliance_report: Optional[dict]
+    cmms_orders: Optional[list]
+    cctv_analytics: Optional[dict]
 
 async def sensor_ingestion_node(state: Dict[str, Any]) -> Dict[str, Any]:
-    # Ingestion pass-through
-    return {"sensor_snapshot": state.get("sensor_snapshot", {})}
+    # Ingestion pass-through enriching with CMMS & CCTV streams
+    try:
+        from core.cmms_stream import cmms_stream
+        from core.cctv_stream import cctv_stream
+        from core.sensor_simulator import sensor_simulator
+        cmms = cmms_stream.get_active_work_orders(sensor_simulator.mode)
+        cctv = cctv_stream.get_latest_vision_analytics(sensor_simulator.mode)
+    except Exception:
+        cmms = []
+        cctv = {}
+    return {
+        "sensor_snapshot": state.get("sensor_snapshot", {}),
+        "cmms_orders": cmms,
+        "cctv_analytics": cctv
+    }
+
+async def compliance_audit_node(state: Dict[str, Any]) -> Dict[str, Any]:
+    from agents.compliance_agent import compliance_audit_agent
+    from core.sensor_simulator import sensor_simulator
+    audit_res = compliance_audit_agent.audit_facility_compliance(
+        sensor_simulator.mode, len(state.get("active_permits", []))
+    )
+    return {"compliance_report": audit_res}
 
 async def alert_emitter_node(state: Dict[str, Any]) -> Dict[str, Any]:
     alerts = state.get("alerts_to_emit", [])
@@ -37,31 +61,32 @@ def route_emergency(state: Dict[str, Any]) -> str:
         return "emergency"
     return "normal"
 
-# Build Graph
+# Build LangGraph 5-Agent Architecture
 graph = StateGraph(SentinelState)
 
 graph.add_node("sensor_ingestion", sensor_ingestion_node)
 graph.add_node("compound_risk_detector", compound_risk_node)
 graph.add_node("permit_intelligence", permit_intelligence_node)
+graph.add_node("compliance_agent", compliance_audit_node)
 graph.add_node("rag_agent", rag_agent_node)
 graph.add_node("emergency_orchestrator", emergency_orchestrator_node)
 graph.add_node("alert_emitter", alert_emitter_node)
 
 graph.set_entry_point("sensor_ingestion")
 graph.add_edge("sensor_ingestion", "compound_risk_detector")
-graph.add_edge("compound_risk_detector", "permit_intelligence")
 
 graph.add_conditional_edges(
     "compound_risk_detector",
     route_emergency,
     {
         "emergency": "emergency_orchestrator",
-        "normal": "alert_emitter"
+        "normal": "permit_intelligence"
     }
 )
 
-graph.add_edge("permit_intelligence", "alert_emitter")
-graph.add_edge("emergency_orchestrator", "alert_emitter")
+graph.add_edge("permit_intelligence", "compliance_agent")
+graph.add_edge("compliance_agent", "alert_emitter")
+graph.add_edge("emergency_orchestrator", "compliance_agent")
 graph.add_edge("alert_emitter", END)
 graph.add_edge("rag_agent", END)
 

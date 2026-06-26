@@ -2,6 +2,7 @@ import React from 'react';
 import { PermitForm } from '../components/permits/PermitForm';
 import { PermitCard } from '../components/permits/PermitCard';
 import { usePermitStore } from '../store/permitStore';
+import { ComplianceAuditPanel } from '../components/permits/ComplianceAuditPanel';
 
 export const PermitsPage: React.FC = () => {
   const permits = usePermitStore((state) => state.permits);
@@ -12,9 +13,11 @@ export const PermitsPage: React.FC = () => {
       <div className="flex items-center justify-between pb-2 border-b border-sentinel-border">
         <div>
           <h1 className="text-2xl font-black tracking-wide text-white">AI PERMIT INTELLIGENCE & SIMOPS REGISTRY</h1>
-          <p className="text-xs text-sentinel-muted font-mono">Agent 2 OISD Regulatory Verification Interlocks</p>
+          <p className="text-xs text-sentinel-muted font-mono">Agent 2 OISD Regulatory Verification & Agent 5 Statutory Audit Interlocks</p>
         </div>
       </div>
+
+      <ComplianceAuditPanel />
 
       <div className="grid grid-cols-3 gap-6">
         <div className="col-span-1">

@@ -33,10 +33,10 @@ export const PlantLayoutMap: React.FC<MapProps> = ({ onSelectZone, selectedZone 
 
   return (
     <div className="bg-sentinel-surface border border-sentinel-border rounded-2xl p-6 relative overflow-hidden shadow-2xl h-[600px] flex flex-col">
-      <div className="flex items-center justify-between pb-4 mb-4 border-b border-sentinel-border">
+      <div className="flex items-center justify-between pb-3 border-b border-sentinel-border">
         <div>
           <h3 className="font-bold text-lg text-white">Live Geospatial SIMOPS Risk Overlay</h3>
-          <p className="text-xs font-mono text-sentinel-muted">Interactive SVG Telemetry Map — Pradhan Integrated Steel Works</p>
+          <p className="text-xs font-mono text-sentinel-muted">WGS84 GPS Coordinates • Visakhapatnam Steel Plant (17.6294° N, 83.2045° E)</p>
         </div>
         <div className="flex items-center gap-4 text-xs font-mono">
           <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-sentinel-critical inline-block animate-ping" /> CRITICAL (BREACH TRAP)</span>
@@ -44,6 +44,13 @@ export const PlantLayoutMap: React.FC<MapProps> = ({ onSelectZone, selectedZone 
           <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-sentinel-safe inline-block" /> NOMINAL</span>
         </div>
       </div>
+
+      {/* GeoJSON Wind Plume Vector Banner */}
+      <div className="bg-sentinel-primary/90 px-4 py-2 rounded-xl border border-blue-500/30 mb-3 flex items-center justify-between text-xs font-mono text-blue-300">
+        <span>🛰️ GIS CRS: WGS84 EPSG:4326 GEOJSON POLYGONS</span>
+        <span>💨 METEOROLOGY: WIND SPEED 14.5 KM/H SE (135°) VAPOR DISPERSION VECTOR</span>
+      </div>
+
 
       <div className="flex-1 w-full bg-[#091017] rounded-xl border border-sentinel-border relative overflow-hidden flex items-center justify-center p-4">
         <svg viewBox="0 0 700 550" className="w-full h-full max-h-[480px]">
