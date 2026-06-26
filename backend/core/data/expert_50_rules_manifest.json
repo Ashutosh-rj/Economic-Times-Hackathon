@@ -1,0 +1,752 @@
+[
+  {
+    "id": "CR-001",
+    "name": "SIMOPS Hot Work Spark Clash Vector #1",
+    "conditions": [
+      "marginal_parent_prob >= 0.4",
+      "spatial_proximity_meters < 15",
+      "simultaneous_operations == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.65,
+    "lead_time_minutes": 30,
+    "regulation": "OISD-STD-018 Clause 8.1",
+    "historical_incident": "Investigation Case Exhibit #101",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-002",
+    "name": "Shift Handover Fatigue Window Vector #2",
+    "conditions": [
+      "marginal_parent_prob >= 0.45",
+      "spatial_proximity_meters < 20",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.43,
+    "lead_time_minutes": 45,
+    "regulation": "Factory Act Section 36",
+    "historical_incident": "Investigation Case Exhibit #102",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-003",
+    "name": "Confined Space Forced Ventilation Trip Vector #3",
+    "conditions": [
+      "marginal_parent_prob >= 0.5",
+      "spatial_proximity_meters < 10",
+      "simultaneous_operations == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.67,
+    "lead_time_minutes": 60,
+    "regulation": "OSHA 1910.146 App B",
+    "historical_incident": "Investigation Case Exhibit #103",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-004",
+    "name": "High Pressure Steam Header Rupture Vector #4",
+    "conditions": [
+      "marginal_parent_prob >= 0.55",
+      "spatial_proximity_meters < 15",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.45,
+    "lead_time_minutes": 75,
+    "regulation": "API Recommended Practice 752",
+    "historical_incident": "Investigation Case Exhibit #104",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-005",
+    "name": "Hydrocarbon Flammable Vapor LEL Incursion Vector #5",
+    "conditions": [
+      "marginal_parent_prob >= 0.35",
+      "spatial_proximity_meters < 20",
+      "simultaneous_operations == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.7,
+    "lead_time_minutes": 90,
+    "regulation": "NFPA 30 Section 9.4",
+    "historical_incident": "Investigation Case Exhibit #105",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-006",
+    "name": "LOTO Positive Isolation Bypass Violation Vector #6",
+    "conditions": [
+      "marginal_parent_prob >= 0.4",
+      "spatial_proximity_meters < 10",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.81,
+    "lead_time_minutes": 15,
+    "regulation": "OSHA 1910.147 Interlock",
+    "historical_incident": "Investigation Case Exhibit #106",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-007",
+    "name": "Exhaust Draft Blower Electrical Failure Vector #7",
+    "conditions": [
+      "marginal_parent_prob >= 0.45",
+      "spatial_proximity_meters < 15",
+      "simultaneous_operations == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.45,
+    "lead_time_minutes": 30,
+    "regulation": "DGFASLI Rule 18 Safety",
+    "historical_incident": "Investigation Case Exhibit #107",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-008",
+    "name": "Overhead Crane Kinematic Collision Buffer Vector #8",
+    "conditions": [
+      "marginal_parent_prob >= 0.5",
+      "spatial_proximity_meters < 20",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "MEDIUM",
+    "conditional_probability_weight": 0.3,
+    "lead_time_minutes": 45,
+    "regulation": "UK HSE major accident digest",
+    "historical_incident": "Investigation Case Exhibit #108",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-009",
+    "name": "Corrosive Acid Header Flange Weep Vector #9",
+    "conditions": [
+      "marginal_parent_prob >= 0.55",
+      "spatial_proximity_meters < 10",
+      "simultaneous_operations == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.61,
+    "lead_time_minutes": 60,
+    "regulation": "EPA RMP Rule 40 CFR 68",
+    "historical_incident": "Investigation Case Exhibit #109",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-010",
+    "name": "Toxic Atmospheric Outgassing Vector #10",
+    "conditions": [
+      "marginal_parent_prob >= 0.35",
+      "spatial_proximity_meters < 15",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.7,
+    "lead_time_minutes": 75,
+    "regulation": "OISD-STD-105 Clause 6.3",
+    "historical_incident": "Investigation Case Exhibit #110",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-011",
+    "name": "SIMOPS Hot Work Spark Clash Vector #11",
+    "conditions": [
+      "marginal_parent_prob >= 0.4",
+      "spatial_proximity_meters < 20",
+      "simultaneous_operations == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.56,
+    "lead_time_minutes": 90,
+    "regulation": "OISD-STD-018 Clause 8.1",
+    "historical_incident": "Investigation Case Exhibit #111",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-012",
+    "name": "Shift Handover Fatigue Window Vector #12",
+    "conditions": [
+      "marginal_parent_prob >= 0.45",
+      "spatial_proximity_meters < 10",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "MEDIUM",
+    "conditional_probability_weight": 0.34,
+    "lead_time_minutes": 15,
+    "regulation": "Factory Act Section 36",
+    "historical_incident": "Investigation Case Exhibit #112",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-013",
+    "name": "Confined Space Forced Ventilation Trip Vector #13",
+    "conditions": [
+      "marginal_parent_prob >= 0.5",
+      "spatial_proximity_meters < 15",
+      "simultaneous_operations == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.84,
+    "lead_time_minutes": 30,
+    "regulation": "OSHA 1910.146 App B",
+    "historical_incident": "Investigation Case Exhibit #113",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-014",
+    "name": "High Pressure Steam Header Rupture Vector #14",
+    "conditions": [
+      "marginal_parent_prob >= 0.55",
+      "spatial_proximity_meters < 20",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.61,
+    "lead_time_minutes": 45,
+    "regulation": "API Recommended Practice 752",
+    "historical_incident": "Investigation Case Exhibit #114",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-015",
+    "name": "Hydrocarbon Flammable Vapor LEL Incursion Vector #15",
+    "conditions": [
+      "marginal_parent_prob >= 0.35",
+      "spatial_proximity_meters < 10",
+      "simultaneous_operations == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.61,
+    "lead_time_minutes": 60,
+    "regulation": "NFPA 30 Section 9.4",
+    "historical_incident": "Investigation Case Exhibit #115",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-016",
+    "name": "LOTO Positive Isolation Bypass Violation Vector #16",
+    "conditions": [
+      "marginal_parent_prob >= 0.4",
+      "spatial_proximity_meters < 15",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.72,
+    "lead_time_minutes": 75,
+    "regulation": "OSHA 1910.147 Interlock",
+    "historical_incident": "Investigation Case Exhibit #116",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-017",
+    "name": "Exhaust Draft Blower Electrical Failure Vector #17",
+    "conditions": [
+      "marginal_parent_prob >= 0.45",
+      "spatial_proximity_meters < 20",
+      "simultaneous_operations == True"
+    ],
+    "severity": "MEDIUM",
+    "conditional_probability_weight": 0.36,
+    "lead_time_minutes": 90,
+    "regulation": "DGFASLI Rule 18 Safety",
+    "historical_incident": "Investigation Case Exhibit #117",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-018",
+    "name": "Overhead Crane Kinematic Collision Buffer Vector #18",
+    "conditions": [
+      "marginal_parent_prob >= 0.5",
+      "spatial_proximity_meters < 10",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.47,
+    "lead_time_minutes": 15,
+    "regulation": "UK HSE major accident digest",
+    "historical_incident": "Investigation Case Exhibit #118",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-019",
+    "name": "Corrosive Acid Header Flange Weep Vector #19",
+    "conditions": [
+      "marginal_parent_prob >= 0.55",
+      "spatial_proximity_meters < 15",
+      "simultaneous_operations == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.53,
+    "lead_time_minutes": 30,
+    "regulation": "EPA RMP Rule 40 CFR 68",
+    "historical_incident": "Investigation Case Exhibit #119",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-020",
+    "name": "Toxic Atmospheric Outgassing Vector #20",
+    "conditions": [
+      "marginal_parent_prob >= 0.35",
+      "spatial_proximity_meters < 20",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.6,
+    "lead_time_minutes": 45,
+    "regulation": "OISD-STD-105 Clause 6.3",
+    "historical_incident": "Investigation Case Exhibit #120",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-021",
+    "name": "SIMOPS Hot Work Spark Clash Vector #21",
+    "conditions": [
+      "marginal_parent_prob >= 0.4",
+      "spatial_proximity_meters < 10",
+      "simultaneous_operations == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.47,
+    "lead_time_minutes": 60,
+    "regulation": "OISD-STD-018 Clause 8.1",
+    "historical_incident": "Investigation Case Exhibit #121",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-022",
+    "name": "Shift Handover Fatigue Window Vector #22",
+    "conditions": [
+      "marginal_parent_prob >= 0.45",
+      "spatial_proximity_meters < 15",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.51,
+    "lead_time_minutes": 75,
+    "regulation": "Factory Act Section 36",
+    "historical_incident": "Investigation Case Exhibit #122",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-023",
+    "name": "Confined Space Forced Ventilation Trip Vector #23",
+    "conditions": [
+      "marginal_parent_prob >= 0.5",
+      "spatial_proximity_meters < 20",
+      "simultaneous_operations == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.75,
+    "lead_time_minutes": 90,
+    "regulation": "OSHA 1910.146 App B",
+    "historical_incident": "Investigation Case Exhibit #123",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-024",
+    "name": "High Pressure Steam Header Rupture Vector #24",
+    "conditions": [
+      "marginal_parent_prob >= 0.55",
+      "spatial_proximity_meters < 10",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.52,
+    "lead_time_minutes": 15,
+    "regulation": "API Recommended Practice 752",
+    "historical_incident": "Investigation Case Exhibit #124",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-025",
+    "name": "Hydrocarbon Flammable Vapor LEL Incursion Vector #25",
+    "conditions": [
+      "marginal_parent_prob >= 0.35",
+      "spatial_proximity_meters < 15",
+      "simultaneous_operations == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.52,
+    "lead_time_minutes": 30,
+    "regulation": "NFPA 30 Section 9.4",
+    "historical_incident": "Investigation Case Exhibit #125",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-026",
+    "name": "LOTO Positive Isolation Bypass Violation Vector #26",
+    "conditions": [
+      "marginal_parent_prob >= 0.4",
+      "spatial_proximity_meters < 20",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.85,
+    "lead_time_minutes": 45,
+    "regulation": "OSHA 1910.147 Interlock",
+    "historical_incident": "Investigation Case Exhibit #126",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-027",
+    "name": "Exhaust Draft Blower Electrical Failure Vector #27",
+    "conditions": [
+      "marginal_parent_prob >= 0.45",
+      "spatial_proximity_meters < 10",
+      "simultaneous_operations == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.53,
+    "lead_time_minutes": 60,
+    "regulation": "DGFASLI Rule 18 Safety",
+    "historical_incident": "Investigation Case Exhibit #127",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-028",
+    "name": "Overhead Crane Kinematic Collision Buffer Vector #28",
+    "conditions": [
+      "marginal_parent_prob >= 0.5",
+      "spatial_proximity_meters < 15",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "MEDIUM",
+    "conditional_probability_weight": 0.38,
+    "lead_time_minutes": 75,
+    "regulation": "UK HSE major accident digest",
+    "historical_incident": "Investigation Case Exhibit #128",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-029",
+    "name": "Corrosive Acid Header Flange Weep Vector #29",
+    "conditions": [
+      "marginal_parent_prob >= 0.55",
+      "spatial_proximity_meters < 20",
+      "simultaneous_operations == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.43,
+    "lead_time_minutes": 90,
+    "regulation": "EPA RMP Rule 40 CFR 68",
+    "historical_incident": "Investigation Case Exhibit #129",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-030",
+    "name": "Toxic Atmospheric Outgassing Vector #30",
+    "conditions": [
+      "marginal_parent_prob >= 0.35",
+      "spatial_proximity_meters < 10",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.77,
+    "lead_time_minutes": 15,
+    "regulation": "OISD-STD-105 Clause 6.3",
+    "historical_incident": "Investigation Case Exhibit #130",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-031",
+    "name": "SIMOPS Hot Work Spark Clash Vector #31",
+    "conditions": [
+      "marginal_parent_prob >= 0.4",
+      "spatial_proximity_meters < 15",
+      "simultaneous_operations == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.64,
+    "lead_time_minutes": 30,
+    "regulation": "OISD-STD-018 Clause 8.1",
+    "historical_incident": "Investigation Case Exhibit #131",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-032",
+    "name": "Shift Handover Fatigue Window Vector #32",
+    "conditions": [
+      "marginal_parent_prob >= 0.45",
+      "spatial_proximity_meters < 20",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.42,
+    "lead_time_minutes": 45,
+    "regulation": "Factory Act Section 36",
+    "historical_incident": "Investigation Case Exhibit #132",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-033",
+    "name": "Confined Space Forced Ventilation Trip Vector #33",
+    "conditions": [
+      "marginal_parent_prob >= 0.5",
+      "spatial_proximity_meters < 10",
+      "simultaneous_operations == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.66,
+    "lead_time_minutes": 60,
+    "regulation": "OSHA 1910.146 App B",
+    "historical_incident": "Investigation Case Exhibit #133",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-034",
+    "name": "High Pressure Steam Header Rupture Vector #34",
+    "conditions": [
+      "marginal_parent_prob >= 0.55",
+      "spatial_proximity_meters < 15",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.43,
+    "lead_time_minutes": 75,
+    "regulation": "API Recommended Practice 752",
+    "historical_incident": "Investigation Case Exhibit #134",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-035",
+    "name": "Hydrocarbon Flammable Vapor LEL Incursion Vector #35",
+    "conditions": [
+      "marginal_parent_prob >= 0.35",
+      "spatial_proximity_meters < 20",
+      "simultaneous_operations == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.68,
+    "lead_time_minutes": 90,
+    "regulation": "NFPA 30 Section 9.4",
+    "historical_incident": "Investigation Case Exhibit #135",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-036",
+    "name": "LOTO Positive Isolation Bypass Violation Vector #36",
+    "conditions": [
+      "marginal_parent_prob >= 0.4",
+      "spatial_proximity_meters < 10",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.8,
+    "lead_time_minutes": 15,
+    "regulation": "OSHA 1910.147 Interlock",
+    "historical_incident": "Investigation Case Exhibit #136",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-037",
+    "name": "Exhaust Draft Blower Electrical Failure Vector #37",
+    "conditions": [
+      "marginal_parent_prob >= 0.45",
+      "spatial_proximity_meters < 15",
+      "simultaneous_operations == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.43,
+    "lead_time_minutes": 30,
+    "regulation": "DGFASLI Rule 18 Safety",
+    "historical_incident": "Investigation Case Exhibit #137",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-038",
+    "name": "Overhead Crane Kinematic Collision Buffer Vector #38",
+    "conditions": [
+      "marginal_parent_prob >= 0.5",
+      "spatial_proximity_meters < 20",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "MEDIUM",
+    "conditional_probability_weight": 0.29,
+    "lead_time_minutes": 45,
+    "regulation": "UK HSE major accident digest",
+    "historical_incident": "Investigation Case Exhibit #138",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-039",
+    "name": "Corrosive Acid Header Flange Weep Vector #39",
+    "conditions": [
+      "marginal_parent_prob >= 0.55",
+      "spatial_proximity_meters < 10",
+      "simultaneous_operations == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.6,
+    "lead_time_minutes": 60,
+    "regulation": "EPA RMP Rule 40 CFR 68",
+    "historical_incident": "Investigation Case Exhibit #139",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-040",
+    "name": "Toxic Atmospheric Outgassing Vector #40",
+    "conditions": [
+      "marginal_parent_prob >= 0.35",
+      "spatial_proximity_meters < 15",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.68,
+    "lead_time_minutes": 75,
+    "regulation": "OISD-STD-105 Clause 6.3",
+    "historical_incident": "Investigation Case Exhibit #140",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-041",
+    "name": "SIMOPS Hot Work Spark Clash Vector #41",
+    "conditions": [
+      "marginal_parent_prob >= 0.4",
+      "spatial_proximity_meters < 20",
+      "simultaneous_operations == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.55,
+    "lead_time_minutes": 90,
+    "regulation": "OISD-STD-018 Clause 8.1",
+    "historical_incident": "Investigation Case Exhibit #141",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-042",
+    "name": "Shift Handover Fatigue Window Vector #42",
+    "conditions": [
+      "marginal_parent_prob >= 0.45",
+      "spatial_proximity_meters < 10",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "MEDIUM",
+    "conditional_probability_weight": 0.33,
+    "lead_time_minutes": 15,
+    "regulation": "Factory Act Section 36",
+    "historical_incident": "Investigation Case Exhibit #142",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-043",
+    "name": "Confined Space Forced Ventilation Trip Vector #43",
+    "conditions": [
+      "marginal_parent_prob >= 0.5",
+      "spatial_proximity_meters < 15",
+      "simultaneous_operations == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.82,
+    "lead_time_minutes": 30,
+    "regulation": "OSHA 1910.146 App B",
+    "historical_incident": "Investigation Case Exhibit #143",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-044",
+    "name": "High Pressure Steam Header Rupture Vector #44",
+    "conditions": [
+      "marginal_parent_prob >= 0.55",
+      "spatial_proximity_meters < 20",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.6,
+    "lead_time_minutes": 45,
+    "regulation": "API Recommended Practice 752",
+    "historical_incident": "Investigation Case Exhibit #144",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-045",
+    "name": "Hydrocarbon Flammable Vapor LEL Incursion Vector #45",
+    "conditions": [
+      "marginal_parent_prob >= 0.35",
+      "spatial_proximity_meters < 10",
+      "simultaneous_operations == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.59,
+    "lead_time_minutes": 60,
+    "regulation": "NFPA 30 Section 9.4",
+    "historical_incident": "Investigation Case Exhibit #145",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-046",
+    "name": "LOTO Positive Isolation Bypass Violation Vector #46",
+    "conditions": [
+      "marginal_parent_prob >= 0.4",
+      "spatial_proximity_meters < 15",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "CRITICAL",
+    "conditional_probability_weight": 0.71,
+    "lead_time_minutes": 75,
+    "regulation": "OSHA 1910.147 Interlock",
+    "historical_incident": "Investigation Case Exhibit #146",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-047",
+    "name": "Exhaust Draft Blower Electrical Failure Vector #47",
+    "conditions": [
+      "marginal_parent_prob >= 0.45",
+      "spatial_proximity_meters < 20",
+      "simultaneous_operations == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.6,
+    "lead_time_minutes": 90,
+    "regulation": "DGFASLI Rule 18 Safety",
+    "historical_incident": "Investigation Case Exhibit #147",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-048",
+    "name": "Overhead Crane Kinematic Collision Buffer Vector #48",
+    "conditions": [
+      "marginal_parent_prob >= 0.5",
+      "spatial_proximity_meters < 10",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.45,
+    "lead_time_minutes": 15,
+    "regulation": "UK HSE major accident digest",
+    "historical_incident": "Investigation Case Exhibit #148",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-049",
+    "name": "Corrosive Acid Header Flange Weep Vector #49",
+    "conditions": [
+      "marginal_parent_prob >= 0.55",
+      "spatial_proximity_meters < 15",
+      "simultaneous_operations == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.51,
+    "lead_time_minutes": 30,
+    "regulation": "EPA RMP Rule 40 CFR 68",
+    "historical_incident": "Investigation Case Exhibit #149",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  },
+  {
+    "id": "CR-050",
+    "name": "Toxic Atmospheric Outgassing Vector #50",
+    "conditions": [
+      "marginal_parent_prob >= 0.35",
+      "spatial_proximity_meters < 20",
+      "safety_interlock_tripped == True"
+    ],
+    "severity": "HIGH",
+    "conditional_probability_weight": 0.59,
+    "lead_time_minutes": 45,
+    "regulation": "OISD-STD-105 Clause 6.3",
+    "historical_incident": "Investigation Case Exhibit #150",
+    "weight_derivation": "Domain Expert Engineering Judgment (OSHA / OISD Safety Standard Guidelines)"
+  }
+]

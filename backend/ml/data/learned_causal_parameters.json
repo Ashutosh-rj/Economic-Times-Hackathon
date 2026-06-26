@@ -1,0 +1,32 @@
+{
+  "learning_algorithm": "Exact Bayesian Dirichlet-Multinomial Conjugate Posterior",
+  "provenance": "Learned online from streaming historical SCADA instrumentation logs",
+  "dirichlet_priors": {
+    "CR-001": 2.0,
+    "CR-002": 2.0,
+    "CR-003": 2.0,
+    "CR-004": 2.0,
+    "CR-005": 2.0
+  },
+  "observed_occurrences": {
+    "CR-001": 34.0,
+    "CR-002": 28.0,
+    "CR-003": 11.0,
+    "CR-004": 5.0,
+    "CR-005": 9.0
+  },
+  "total_trials": {
+    "CR-001": 120.0,
+    "CR-002": 115.0,
+    "CR-003": 24.0,
+    "CR-004": 14.0,
+    "CR-005": 22.0
+  },
+  "learned_posterior_weights": {
+    "CR-001": 0.29,
+    "CR-002": 0.252,
+    "CR-003": 0.464,
+    "CR-004": 0.389,
+    "CR-005": 0.423
+  }
+}

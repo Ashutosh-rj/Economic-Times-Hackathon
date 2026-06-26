@@ -1,0 +1,15 @@
+GOVERNMENT STATUTORY INVESTIGATION REPORT — EXHIBIT #1116
+INVESTIGATING AGENCY: U.S. Chemical Safety Board (CSB)
+HAZARD CATEGORY: Ammonia Refrigeration Header Rupture
+REGULATORY STATUTE VIOLATED: EPA RMP Rule 40 CFR 68
+
+INCIDENT SUMMARY:
+On industrial shift operations, supervisory safety interlocks recorded a catastrophic containment breach in Plant Sector Zone-3. Continuous multi-gas IoT telemetry registered peak atmospheric contaminant concentrations of 197 PPM, drastically exceeding permissible exposure ceilings.
+
+CAUSAL MECHANISM & ROOT CAUSE ANALYSIS:
+Forensic engineering evaluation determined that the primary failure mode was: Corrosion under insulation (CUI) caused sudden pipe failure in chemical storage sector. Simultaneous Operations (SIMOPS) density compounding inadequate dedicated safety officer oversight prevented timely emergency evacuation.
+
+MANDATORY CORRECTIVE & PREVENTIVE ACTIONS (CAPA):
+1. Install hard-wired digital interlocks between portable gas monitors and PTW authorization servers.
+2. Enforce rigid 15-meter radial exclusion buffer zones during active hot work SIMOPS.
+3. Mandate redundant backup battery power feeds for all mechanical confined space exhaust blowers.

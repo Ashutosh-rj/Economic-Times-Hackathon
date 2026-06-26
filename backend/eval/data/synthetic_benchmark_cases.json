@@ -1,0 +1,452 @@
+[
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-001",
+    "h2s_ppm": 9.47,
+    "co_ppm": 90.2,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-002",
+    "h2s_ppm": 10.23,
+    "co_ppm": 37.6,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-003",
+    "h2s_ppm": 21.95,
+    "co_ppm": 29.4,
+    "confined_space_ptw": false,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-004",
+    "h2s_ppm": 8.16,
+    "co_ppm": 22.0,
+    "confined_space_ptw": true,
+    "blower_tripped": true,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-005",
+    "h2s_ppm": 19.4,
+    "co_ppm": 15.1,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-006",
+    "h2s_ppm": 13.6,
+    "co_ppm": 10.0,
+    "confined_space_ptw": false,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-007",
+    "h2s_ppm": 19.74,
+    "co_ppm": 49.3,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-008",
+    "h2s_ppm": 30.0,
+    "co_ppm": 87.1,
+    "confined_space_ptw": true,
+    "blower_tripped": true,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-009",
+    "h2s_ppm": 31.27,
+    "co_ppm": 58.4,
+    "confined_space_ptw": false,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-010",
+    "h2s_ppm": 6.62,
+    "co_ppm": 112.6,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-011",
+    "h2s_ppm": 34.54,
+    "co_ppm": 17.2,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-012",
+    "h2s_ppm": 20.02,
+    "co_ppm": 148.1,
+    "confined_space_ptw": false,
+    "blower_tripped": true,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-013",
+    "h2s_ppm": 3.2,
+    "co_ppm": 23.0,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-014",
+    "h2s_ppm": 1.86,
+    "co_ppm": 118.7,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-015",
+    "h2s_ppm": 13.96,
+    "co_ppm": 11.7,
+    "confined_space_ptw": false,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-016",
+    "h2s_ppm": 12.43,
+    "co_ppm": 9.8,
+    "confined_space_ptw": true,
+    "blower_tripped": true,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-017",
+    "h2s_ppm": 7.01,
+    "co_ppm": 76.7,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-018",
+    "h2s_ppm": 23.67,
+    "co_ppm": 135.2,
+    "confined_space_ptw": false,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-019",
+    "h2s_ppm": 13.35,
+    "co_ppm": 56.5,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-020",
+    "h2s_ppm": 32.68,
+    "co_ppm": 65.1,
+    "confined_space_ptw": true,
+    "blower_tripped": true,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-021",
+    "h2s_ppm": 10.82,
+    "co_ppm": 44.8,
+    "confined_space_ptw": false,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-022",
+    "h2s_ppm": 4.21,
+    "co_ppm": 78.3,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-023",
+    "h2s_ppm": 16.46,
+    "co_ppm": 41.9,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-024",
+    "h2s_ppm": 15.03,
+    "co_ppm": 81.8,
+    "confined_space_ptw": false,
+    "blower_tripped": true,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-025",
+    "h2s_ppm": 16.17,
+    "co_ppm": 18.7,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-026",
+    "h2s_ppm": 26.73,
+    "co_ppm": 48.7,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-027",
+    "h2s_ppm": 24.63,
+    "co_ppm": 106.5,
+    "confined_space_ptw": false,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-028",
+    "h2s_ppm": 31.16,
+    "co_ppm": 91.1,
+    "confined_space_ptw": true,
+    "blower_tripped": true,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-029",
+    "h2s_ppm": 0.58,
+    "co_ppm": 71.3,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-030",
+    "h2s_ppm": 16.28,
+    "co_ppm": 126.2,
+    "confined_space_ptw": false,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-031",
+    "h2s_ppm": 10.23,
+    "co_ppm": 108.8,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-032",
+    "h2s_ppm": 19.64,
+    "co_ppm": 26.4,
+    "confined_space_ptw": true,
+    "blower_tripped": true,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-033",
+    "h2s_ppm": 0.85,
+    "co_ppm": 96.8,
+    "confined_space_ptw": false,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-034",
+    "h2s_ppm": 28.52,
+    "co_ppm": 32.3,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-035",
+    "h2s_ppm": 11.65,
+    "co_ppm": 12.5,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-036",
+    "h2s_ppm": 24.94,
+    "co_ppm": 129.8,
+    "confined_space_ptw": false,
+    "blower_tripped": true,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-037",
+    "h2s_ppm": 25.8,
+    "co_ppm": 55.7,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-038",
+    "h2s_ppm": 25.66,
+    "co_ppm": 5.4,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-039",
+    "h2s_ppm": 1.57,
+    "co_ppm": 29.8,
+    "confined_space_ptw": false,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-040",
+    "h2s_ppm": 18.52,
+    "co_ppm": 7.0,
+    "confined_space_ptw": true,
+    "blower_tripped": true,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-041",
+    "h2s_ppm": 24.11,
+    "co_ppm": 58.8,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-042",
+    "h2s_ppm": 34.8,
+    "co_ppm": 119.5,
+    "confined_space_ptw": false,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-043",
+    "h2s_ppm": 9.02,
+    "co_ppm": 44.5,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-044",
+    "h2s_ppm": 34.12,
+    "co_ppm": 106.8,
+    "confined_space_ptw": true,
+    "blower_tripped": true,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-045",
+    "h2s_ppm": 26.13,
+    "co_ppm": 78.1,
+    "confined_space_ptw": false,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-046",
+    "h2s_ppm": 1.36,
+    "co_ppm": 16.3,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": false,
+    "static_scada_alarm_tripped": false
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-047",
+    "h2s_ppm": 4.31,
+    "co_ppm": 145.7,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-048",
+    "h2s_ppm": 30.21,
+    "co_ppm": 27.9,
+    "confined_space_ptw": false,
+    "blower_tripped": true,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-049",
+    "h2s_ppm": 30.33,
+    "co_ppm": 136.1,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  },
+  {
+    "scenario_id": "SYNTHETIC-SCENARIO-050",
+    "h2s_ppm": 30.69,
+    "co_ppm": 104.5,
+    "confined_space_ptw": true,
+    "blower_tripped": false,
+    "true_hazard_ground_truth": true,
+    "static_scada_alarm_tripped": true
+  }
+]

@@ -1,0 +1,15 @@
+GOVERNMENT STATUTORY INVESTIGATION REPORT — EXHIBIT #1048
+INVESTIGATING AGENCY: OISD Refinery Safety Directorate
+HAZARD CATEGORY: Boiler Drum Overpressure Explosion
+REGULATORY STATUTE VIOLATED: ASME Section VIII Div 1
+
+INCIDENT SUMMARY:
+On industrial shift operations, supervisory safety interlocks recorded a catastrophic containment breach in Plant Sector Zone-1. Continuous multi-gas IoT telemetry registered peak atmospheric contaminant concentrations of 121 PPM, drastically exceeding permissible exposure ceilings.
+
+CAUSAL MECHANISM & ROOT CAUSE ANALYSIS:
+Forensic engineering evaluation determined that the primary failure mode was: Safety relief valve seized due to lack of scheduled preventive maintenance. Simultaneous Operations (SIMOPS) density compounding inadequate dedicated safety officer oversight prevented timely emergency evacuation.
+
+MANDATORY CORRECTIVE & PREVENTIVE ACTIONS (CAPA):
+1. Install hard-wired digital interlocks between portable gas monitors and PTW authorization servers.
+2. Enforce rigid 15-meter radial exclusion buffer zones during active hot work SIMOPS.
+3. Mandate redundant backup battery power feeds for all mechanical confined space exhaust blowers.

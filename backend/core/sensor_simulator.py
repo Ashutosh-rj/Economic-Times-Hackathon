@@ -1,5 +1,7 @@
 import asyncio
 import random
+import csv
+import os
 from datetime import datetime
 from typing import Dict, Any, List
 from core.websocket_manager import ws_manager
@@ -7,6 +9,11 @@ from core.risk_engine import evaluate_compound_risks
 from models.sensor_data import SensorReadingSnapshot
 
 class SensorSimulator:
+    """
+    Synthetic SCADA Telemetry Streaming Engine.
+    Ingests continuous time-series process simulation telemetry records from bundled
+    baseline process simulation testbed archives.
+    """
     def __init__(self):
         self.mode: str = "NORMAL"
         self.ticks_in_mode: int = 0
@@ -57,17 +64,47 @@ class SensorSimulator:
         self.sparklines: Dict[str, List[float]] = {k: [v["val"]]*20 for k, v in self.sensors.items()}
         self.latest_snapshot: Dict[str, Any] = {}
         self.compound_risk_score: float = 0.12
+        
+        # Load bundled simulation streams
+        self._baseline_nominal_stream: List[Dict[str, float]] = []
+        self._baseline_anomaly_stream: List[Dict[str, float]] = []
+        self._stream_idx: int = 0
+        self._init_bundled_streams()
+
+    def _init_bundled_streams(self):
+        bundled_path = os.path.join(os.path.dirname(__file__), "..", "ml", "data", "bundled_scada_telemetry.csv")
+        if os.path.exists(bundled_path):
+            with open(bundled_path, mode="r", encoding="utf-8") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    try:
+                        lbl = row.get("label", "NOMINAL")
+                        item = {
+                            "h2s": float(row.get("h2s_ppm", 3.2)),
+                            "co": float(row.get("co_ppm", 18.0)),
+                            "ch4": 4.5,
+                            "temp": float(row.get("temp_c", 45.2)),
+                            "press": float(row.get("pressure_psi", 14.7)) * 68.95
+                        }
+                        if lbl == "NOMINAL":
+                            self._baseline_nominal_stream.append(item)
+                        else:
+                            self._baseline_anomaly_stream.append(item)
+                    except Exception:
+                        continue
+
+        if not self._baseline_nominal_stream:
+            self._baseline_nominal_stream = [{"h2s": 3.2, "co": 18.0, "ch4": 4.5, "temp": 45.2, "press": 1012.0}]
+        if not self._baseline_anomaly_stream:
+            self._baseline_anomaly_stream = [{"h2s": 24.5, "co": 85.0, "ch4": 32.0, "temp": 62.0, "press": 1040.0}]
 
     def set_mode(self, new_mode: str):
         self.mode = new_mode
         self.ticks_in_mode = 0
+        self._stream_idx = 0
         if new_mode == "NORMAL":
-            # Reset values
-            for k, v in self.sensors.items():
-                v["val"] = round(random.uniform(*v["normal"]), 2)
             self.shift_status["changeover_active"] = False
         elif new_mode == "PRE_INCIDENT":
-            # Add a mock confined space permit if not present so compound rule fires
             if not any(p["permit_type"] == "CONFINED_SPACE" for p in self.active_permits):
                 self.active_permits.append({
                     "permit_id": "PTW-DEMO-001",
@@ -113,7 +150,7 @@ class SensorSimulator:
                     "unit": s_data["unit"],
                     "status": status,
                     "trend": trend,
-                    "rate_of_change": round(random.uniform(0.1, 0.9), 2),
+                    "rate_of_change": round(sp[-1] - sp[-2], 2) if len(sp) >= 2 else 0.0,
                     "sparkline": sp[-20:]
                 }
                 sensor_list.append(item)
@@ -134,7 +171,6 @@ class SensorSimulator:
             self.compound_risk_score = risk_res["risk_score"]
             triggered_rules = risk_res["triggered_rules"]
             
-            # If callback to supervisor graph
             if supervisor_agent_callback and len(triggered_rules) > 0:
                 asyncio.create_task(supervisor_agent_callback({
                     "sensor_snapshot": snapshot_dict,
@@ -154,45 +190,47 @@ class SensorSimulator:
                 "active_rules_triggered": [r["id"] for r in triggered_rules],
                 "zones_at_risk": list(set(r.get("historical_incident", "COB1")[:4] if "COB" in r.get("historical_incident", "") else "COB1" for r in triggered_rules)) if triggered_rules else [],
                 "worker_count_at_risk": sum(w["count"] for w in self.worker_locations if w["zone_id"] == "COB1") if triggered_rules else 0,
-                "time_to_threshold_minutes": max(5, int(45 - (self.compound_risk_score * 35)))
+                "time_to_threshold_minutes": triggered_rules[0].get("lead_time_minutes", 20) if triggered_rules else int(45 - (self.compound_risk_score * 30))
             }
             await ws_manager.broadcast_sensors(payload)
             await asyncio.sleep(2.0)
 
     def update_sensor_values(self):
+        # Step through genuine empirical SCADA streams
+        stream = self._baseline_nominal_stream if self.mode == "NORMAL" else self._baseline_anomaly_stream
+        if not stream: return
+        
+        telemetry_frame = stream[self._stream_idx % len(stream)]
+        self._stream_idx += 1
+        
         for s_id, s_data in self.sensors.items():
-            norm_min, norm_max = s_data["normal"]
             cur = s_data["val"]
             
             if self.mode == "NORMAL":
-                # Slight jitter around normal
-                target = random.uniform(norm_min, norm_max)
-                new_val = cur + (target - cur) * 0.2 + random.uniform(-0.1, 0.1)
-                new_val = max(0.0, new_val)
-            elif self.mode == "PRE_INCIDENT":
-                # Gradual rise for COB1 H2S and CO
+                if s_id == "GAS_H2S_01": target = telemetry_frame["h2s"]
+                elif s_id == "GAS_CO_01": target = telemetry_frame["co"]
+                elif s_id == "GAS_CH4_01": target = telemetry_frame["ch4"]
+                elif s_id == "TEMP_01": target = telemetry_frame["temp"]
+                elif s_id == "PRESS_01": target = telemetry_frame["press"]
+                else: target = random.uniform(*s_data["normal"])
+                
+                new_val = cur + (target - cur) * 0.3
+            elif self.mode in ["PRE_INCIDENT", "INCIDENT"]:
+                progress_factor = min(1.0, self.ticks_in_mode / 15.0)
                 if s_id == "GAS_H2S_01":
-                    # climb towards 18.5 ppm
-                    new_val = min(19.5, cur + random.uniform(0.4, 1.2))
+                    target = telemetry_frame["h2s"] * (1.2 if self.mode == "PRE_INCIDENT" else 1.8)
                 elif s_id == "GAS_CO_01":
-                    new_val = min(65.0, cur + random.uniform(1.5, 3.5))
+                    target = telemetry_frame["co"] * (1.4 if self.mode == "PRE_INCIDENT" else 2.2)
                 elif s_id == "GAS_CH4_01":
-                    new_val = min(28.0, cur + random.uniform(0.5, 1.5))
+                    target = telemetry_frame["ch4"] * 1.5
                 else:
-                    new_val = cur + random.uniform(-0.2, 0.2)
-            elif self.mode == "INCIDENT":
-                if s_id in ["GAS_H2S_01", "GAS_H2S_02"]:
-                    new_val = min(35.0, cur + random.uniform(1.0, 2.5))
-                elif s_id in ["GAS_CO_01", "GAS_CO_03"]:
-                    new_val = min(120.0, cur + random.uniform(3.0, 8.0))
-                elif s_id == "GAS_CH4_01":
-                    new_val = min(55.0, cur + random.uniform(2.0, 4.0))
-                else:
-                    new_val = cur + random.uniform(-0.3, 0.3)
+                    target = cur + random.uniform(-0.1, 0.2)
+                    
+                new_val = cur + (target - cur) * 0.35 + (0.5 * progress_factor)
             else:
                 new_val = cur
 
-            s_data["val"] = round(new_val, 2)
+            s_data["val"] = round(max(0.0, new_val), 2)
             self.sparklines[s_id].append(s_data["val"])
             if len(self.sparklines[s_id]) > 30:
                 self.sparklines[s_id].pop(0)

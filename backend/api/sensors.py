@@ -113,6 +113,34 @@ async def get_modbus_tcp_registers():
     gw = VirtualModbusSCADAGateway.get_instance()
     return gw.read_holding_registers(sensor_simulator.mode)
 
+@router.get("/geospatial/overlay")
+async def get_geospatial_gis_overlay():
+    from core.geospatial import generate_geojson_overlay, evaluate_spatial_entrapment
+    from core.sensor_simulator import sensor_simulator
+    geojson_col = generate_geojson_overlay(
+        risk_score=sensor_simulator.compound_risk_score,
+        wind_bearing=135,
+        wind_speed_kmh=14.5
+    )
+    workers_gps = [
+        {"worker_id": "EMP-881", "lat": 17.6288, "lng": 83.2081, "role": "SIMOPS_TECHNICIAN"},
+        {"worker_id": "EMP-902", "lat": 17.6285, "lng": 83.2078, "role": "SAFETY_WATCH"},
+        {"worker_id": "EMP-411", "lat": 17.6310, "lng": 83.2070, "role": "CRANE_OPERATOR"}
+    ]
+    cob1_poly = []
+    for feat in geojson_col["features"]:
+        if feat["properties"].get("zone_key") == "COKE_OVEN_BATTERY_1":
+            coords = feat["geometry"]["coordinates"][0]
+            cob1_poly = [{"lng": pt[0], "lat": pt[1]} for pt in coords]
+            break
+            
+    entrapment = evaluate_spatial_entrapment(workers_gps, cob1_poly if cob1_poly else [{"lat":0,"lng":0}])
+    return {
+        "geojson_layer": geojson_col,
+        "ray_casting_entrapment": entrapment,
+        "live_personnel_tracking": workers_gps
+    }
+
 
 
 
