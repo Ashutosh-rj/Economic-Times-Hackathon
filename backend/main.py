@@ -58,10 +58,12 @@ async def verify_api_key_interlock(request: Request, call_next):
     # Enforce enterprise security interlocks on actuation routes
     if request.url.path in ["/api/emergency/trigger", "/api/simulation/mode"] and request.method == "POST":
         auth_header = request.headers.get("X-Sentinel-API-Key")
-        if auth_header != "sentinel-enterprise-key-2026" and not request.headers.get("X-Demo-Override"):
-            # We allow demo override for live frontend Hackathon presentation
-            pass
+        demo_header = request.headers.get("X-Demo-Override")
+        if auth_header != "sentinel-enterprise-key-2026" and demo_header != "true":
+            from fastapi.responses import JSONResponse
+            return JSONResponse(status_code=401, content={"detail": "Enterprise Security Interlock Triggered: Unauthorized Actuation Request."})
     return await call_next(request)
+
 
 app.include_router(sensors.router, prefix="/api")
 app.include_router(alerts.router, prefix="/api")

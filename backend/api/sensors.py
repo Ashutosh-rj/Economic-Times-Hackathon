@@ -89,6 +89,24 @@ async def get_statutory_compliance_audit():
     from core.sensor_simulator import sensor_simulator
     return compliance_audit_agent.audit_facility_compliance(sensor_simulator.mode)
 
+@router.get("/analytics/ml-forecast")
+async def get_ml_anomaly_forecast():
+    from ml.forecaster import SIMOPSAnomalyForecaster
+    from core.sensor_simulator import sensor_simulator
+    forecaster = SIMOPSAnomalyForecaster.get_instance()
+    snapshot = sensor_simulator.latest_snapshot
+    h2s = snapshot.get("SN_GAS_COB1_01", {}).get("value", 1.5)
+    co = snapshot.get("SN_GAS_COB1_02", {}).get("value", 10.0)
+    return forecaster.predict_forecasting_risk({"h2s_ppm": h2s, "co_ppm": co})
+
+@router.get("/scada/modbus-registers")
+async def get_modbus_tcp_registers():
+    from core.scada_gateway import VirtualModbusSCADAGateway
+    from core.sensor_simulator import sensor_simulator
+    gw = VirtualModbusSCADAGateway.get_instance()
+    return gw.read_holding_registers(sensor_simulator.mode)
+
+
 
 
 

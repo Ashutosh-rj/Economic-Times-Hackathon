@@ -16,7 +16,8 @@ export const DemoToggleModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const handleSetMode = async (mode: string) => {
     try {
       setSimulationModeLocal(mode);
-      await axios.post('http://localhost:8000/api/simulation/mode', { mode });
+      await axios.post('http://localhost:8000/api/simulation/mode', { mode }, { headers: { 'X-Demo-Override': 'true' } });
+
     } catch (e) {
       console.error("Failed to set simulation mode on API:", e);
     }

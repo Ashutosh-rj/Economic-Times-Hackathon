@@ -13,7 +13,8 @@ export const PlantLayoutMap: React.FC<MapProps> = ({ onSelectZone, selectedZone 
   const score = useSensorStore((state) => state.compoundRiskScore);
   const mode = useSensorStore((state) => state.simulationMode);
 
-  const isDanger = mode in ['PRE_INCIDENT', 'INCIDENT'] || score > 0.6;
+  const isDanger = ['PRE_INCIDENT', 'INCIDENT'].includes(mode) || score > 0.6;
+
 
   const zones = [
     {
