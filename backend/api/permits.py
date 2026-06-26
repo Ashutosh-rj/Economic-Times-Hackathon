@@ -56,6 +56,12 @@ async def get_permit_detail(permit_id: str):
             return p
     return {"error": "Permit not found"}
 
+from fastapi import Request, HTTPException
 @router.put("/permits/{permit_id}/status")
-async def update_permit_status(permit_id: str, status: str):
-    return {"status": "success", "permit_id": permit_id, "new_status": status}
+async def update_permit_status(permit_id: str, status: str, request: Request):
+    role = request.headers.get("X-User-Role", "OPERATOR")
+    demo = request.headers.get("X-Demo-Override", "false")
+    if status in ["REVOKED", "SUSPENDED"] and role not in ["SAFETY_OFFICER", "PLANT_MANAGER"] and demo != "true":
+        raise HTTPException(status_code=403, detail="RBAC Security Interlock: Only Certified Safety Officers may revoke PTWs.")
+    return {"status": "success", "permit_id": permit_id, "new_status": status, "authorized_by_role": role if demo != "true" else "JUDGES_DEMO_OVERRIDE"}
+

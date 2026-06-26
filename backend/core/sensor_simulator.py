@@ -121,12 +121,13 @@ class SensorSimulator:
                 
             self.latest_snapshot = snapshot_dict
             
+            from core.cmms_stream import cmms_stream
             # Evaluate compound risk
             risk_res = evaluate_compound_risks(
                 sensor_snapshot=snapshot_dict,
                 active_permits=self.active_permits,
                 shift_status=self.shift_status,
-                maintenance_log=[],
+                maintenance_log=cmms_stream.get_active_work_orders(self.mode),
                 worker_locations=self.worker_locations,
                 simulation_mode=self.mode
             )

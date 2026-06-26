@@ -99,7 +99,14 @@ async def get_ml_anomaly_forecast():
     co = snapshot.get("SN_GAS_COB1_02", {}).get("value", 10.0)
     return forecaster.predict_forecasting_risk({"h2s_ppm": h2s, "co_ppm": co})
 
+@router.get("/analytics/sensor-fusion")
+async def get_time_series_sensor_fusion():
+    from agents.sensor_fusion_agent import sensor_fusion_agent
+    from core.sensor_simulator import sensor_simulator
+    return sensor_fusion_agent.analyze_trend_kinetics(sensor_simulator.latest_snapshot or {}, sensor_simulator.mode)
+
 @router.get("/scada/modbus-registers")
+
 async def get_modbus_tcp_registers():
     from core.scada_gateway import VirtualModbusSCADAGateway
     from core.sensor_simulator import sensor_simulator
