@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSensorStore } from '../../store/sensorStore';
-import { ShieldAlert, Users, Flame, CheckCircle } from 'lucide-react';
+import { ShieldAlert, Users, Flame, Wind, Layers } from 'lucide-react';
+import { MapContainer, TileLayer, Polygon, Polyline, Popup, Tooltip } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 
 interface MapProps {
   onSelectZone: (zoneKey: string) => void;
@@ -11,108 +13,197 @@ export const PlantLayoutMap: React.FC<MapProps> = ({ onSelectZone, selectedZone 
   const score = useSensorStore((state) => state.compoundRiskScore);
   const mode = useSensorStore((state) => state.simulationMode);
 
+  const isDanger = mode in ['PRE_INCIDENT', 'INCIDENT'] || score > 0.6;
+
   const zones = [
-    { key: 'COKE_OVEN_BATTERY_1', name: 'Coke Oven Battery #1', x: 80, y: 100, w: 220, h: 140, workers: 6, risk: mode in ['PRE_INCIDENT', 'INCIDENT'] || score > 0.6 ? 'CRITICAL' : 'SAFE' },
-    { key: 'BLAST_FURNACE_GCP', name: 'Blast Furnace GCP', x: 350, y: 80, w: 240, h: 160, workers: 4, risk: score > 0.4 ? 'HIGH' : 'SAFE' },
-    { key: 'CHEMICAL_STORAGE_YARD', name: 'Chemical Storage Yard', x: 100, y: 280, w: 200, h: 120, workers: 2, risk: 'SAFE' },
-    { key: 'MAINTENANCE_WORKSHOP', name: 'Maintenance Workshop', x: 350, y: 280, w: 240, h: 120, workers: 8, risk: 'SAFE' },
-    { key: 'CENTRAL_CONTROL_ROOM', name: 'Central Control Room', x: 260, y: 440, w: 180, h: 80, workers: 5, risk: 'SAFE' },
+    {
+      key: 'COKE_OVEN_BATTERY_1',
+      name: 'Coke Oven Battery #1',
+      id: 'COB1',
+      hazard: 'Zone-1 (Explosive H2S / CO Gas)',
+      workers: 6,
+      risk: isDanger ? 'CRITICAL' : 'SAFE',
+      positions: [
+        [17.6299, 83.2040],
+        [17.6299, 83.2050],
+        [17.6289, 83.2050],
+        [17.6289, 83.2040]
+      ] as [number, number][]
+    },
+    {
+      key: 'COKE_OVEN_BATTERY_2',
+      name: 'Coke Oven Battery #2',
+      id: 'COB2',
+      hazard: 'Zone-1 (Flammable Outgassing)',
+      workers: 4,
+      risk: score > 0.4 ? 'HIGH' : 'SAFE',
+      positions: [
+        [17.6299, 83.2053],
+        [17.6299, 83.2063],
+        [17.6289, 83.2063],
+        [17.6289, 83.2053]
+      ] as [number, number][]
+    },
+    {
+      key: 'BLAST_FURNACE',
+      name: 'Blast Furnace GCP Area',
+      id: 'BF1',
+      hazard: 'Zone-0 (Continuous Flammable Gas)',
+      workers: 4,
+      risk: score > 0.4 ? 'HIGH' : 'SAFE',
+      positions: [
+        [17.6315, 83.2065],
+        [17.6315, 83.2080],
+        [17.6300, 83.2080],
+        [17.6300, 83.2065]
+      ] as [number, number][]
+    },
+    {
+      key: 'CHEMICAL_STORAGE',
+      name: 'Chemical Storage Yard',
+      id: 'CS1',
+      hazard: 'Zone-1 (Toxic Ammonia & Acids)',
+      workers: 2,
+      risk: 'SAFE',
+      positions: [
+        [17.6286, 83.2039],
+        [17.6286, 83.2051],
+        [17.6274, 83.2051],
+        [17.6274, 83.2039]
+      ] as [number, number][]
+    },
+    {
+      key: 'CONTROL_ROOM',
+      name: 'Central Control Vault',
+      id: 'CR1',
+      hazard: 'Zone-2 (Positive Pressure Safe Vault)',
+      workers: 5,
+      risk: 'SAFE',
+      positions: [
+        [17.6284, 83.2057],
+        [17.6284, 83.2067],
+        [17.6276, 83.2067],
+        [17.6276, 83.2057]
+      ] as [number, number][]
+    },
+    {
+      key: 'MAINTENANCE_WORKSHOP',
+      name: 'Maintenance Workshop',
+      id: 'MW1',
+      hazard: 'Zone-2 (SIMOPS Hot Work Corridor)',
+      workers: 8,
+      risk: 'SAFE',
+      positions: [
+        [17.6288, 83.2073],
+        [17.6288, 83.2087],
+        [17.6276, 83.2087],
+        [17.6276, 83.2073]
+      ] as [number, number][]
+    }
   ];
 
-  const getZoneFill = (risk: string, isSel: boolean) => {
-    if (risk === 'CRITICAL') return isSel ? '#FF1744' : 'rgba(255, 23, 68, 0.35)';
-    if (risk === 'HIGH') return isSel ? '#FF4B1F' : 'rgba(255, 75, 31, 0.35)';
-    return isSel ? '#00D084' : 'rgba(0, 208, 132, 0.15)';
+  const getPolygonColor = (risk: string, isSel: boolean) => {
+    if (risk === 'CRITICAL') return { color: '#FF1744', fillColor: '#FF1744', fillOpacity: isSel ? 0.6 : 0.4 };
+    if (risk === 'HIGH') return { color: '#FF4B1F', fillColor: '#FF4B1F', fillOpacity: isSel ? 0.5 : 0.35 };
+    return { color: isSel ? '#00D084' : '#1E3048', fillColor: '#00D084', fillOpacity: isSel ? 0.3 : 0.15 };
   };
 
-  const getZoneStroke = (risk: string, isSel: boolean) => {
-    if (risk === 'CRITICAL') return '#FF1744';
-    if (risk === 'HIGH') return '#FF4B1F';
-    return isSel ? '#00D084' : '#1E3048';
-  };
+  // Plume vector LineString from COB1 centroid towards SE
+  const plumeLine: [number, number][] = [
+    [17.6294, 83.2045],
+    [17.6270, 83.2068]
+  ];
 
   return (
-    <div className="bg-sentinel-surface border border-sentinel-border rounded-2xl p-6 relative overflow-hidden shadow-2xl h-[600px] flex flex-col">
-      <div className="flex items-center justify-between pb-3 border-b border-sentinel-border">
+    <div className="bg-sentinel-surface border border-sentinel-border rounded-2xl p-6 relative overflow-hidden shadow-2xl h-[650px] flex flex-col font-mono">
+      <div className="flex items-center justify-between pb-3 border-b border-sentinel-border mb-3">
         <div>
-          <h3 className="font-bold text-lg text-white">Live Geospatial SIMOPS Risk Overlay</h3>
-          <p className="text-xs font-mono text-sentinel-muted">WGS84 GPS Coordinates • Visakhapatnam Steel Plant (17.6294° N, 83.2045° E)</p>
+          <div className="flex items-center gap-2">
+            <span className="px-2 py-0.5 bg-blue-600 text-white font-black text-[10px] rounded">LEAFLET.JS GIS ENGINE</span>
+            <span className="text-xs text-sentinel-muted">WGS84 EPSG:4326 GEOJSON OVERLAYS</span>
+          </div>
+          <h3 className="font-bold text-lg text-white tracking-wide mt-1">Visakhapatnam Steel Plant Spatial Telemetry Overlay</h3>
         </div>
-        <div className="flex items-center gap-4 text-xs font-mono">
-          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-sentinel-critical inline-block animate-ping" /> CRITICAL (BREACH TRAP)</span>
+        <div className="flex items-center gap-4 text-xs">
+          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-sentinel-critical inline-block animate-ping" /> CRITICAL POLYGON</span>
           <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-sentinel-accent inline-block" /> HIGH (SIMOPS)</span>
           <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-sentinel-safe inline-block" /> NOMINAL</span>
         </div>
       </div>
 
-      {/* GeoJSON Wind Plume Vector Banner */}
-      <div className="bg-sentinel-primary/90 px-4 py-2 rounded-xl border border-blue-500/30 mb-3 flex items-center justify-between text-xs font-mono text-blue-300">
-        <span>🛰️ GIS CRS: WGS84 EPSG:4326 GEOJSON POLYGONS</span>
-        <span>💨 METEOROLOGY: WIND SPEED 14.5 KM/H SE (135°) VAPOR DISPERSION VECTOR</span>
+      {/* GIS Telemetry HUD Banner */}
+      <div className="bg-[#0A1624] px-4 py-2.5 rounded-xl border border-blue-500/30 mb-3 flex items-center justify-between text-xs text-blue-300">
+        <span className="flex items-center gap-2"><Layers className="w-4 h-4 text-blue-400" /> CENTER: 17.6294° N, 83.2045° E (RASHTRIYA ISPAT NIGAM LTD)</span>
+        <span className="flex items-center gap-2"><Wind className="w-4 h-4 text-amber-400 animate-pulse" /> DISPERSION VECTOR: WIND 14.5 KM/H SE (135°) VAPOR PLUME</span>
       </div>
 
+      <div className="flex-1 w-full rounded-xl overflow-hidden border border-sentinel-border relative z-10">
+        <MapContainer 
+          center={[17.6294, 83.2058]} 
+          zoom={16} 
+          style={{ height: '100%', width: '100%', background: '#091017' }}
+        >
+          {/* CartoDB Dark Matter Base Map TileLayer */}
+          <TileLayer
+            attribution='&copy; <a href="https://carto.com/">CartoDB</a> • Sentinel AI GIS'
+            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+          />
 
-      <div className="flex-1 w-full bg-[#091017] rounded-xl border border-sentinel-border relative overflow-hidden flex items-center justify-center p-4">
-        <svg viewBox="0 0 700 550" className="w-full h-full max-h-[480px]">
-          {/* Grid lines background */}
-          <defs>
-            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#162032" strokeWidth="1"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-
-          {/* Interconnecting pipelines */}
-          <path d="M 300 170 L 350 160" stroke="#FF4B1F" strokeWidth="4" strokeDasharray="6,6" fill="none" className="animate-pulse" />
-          <path d="M 200 240 L 200 280" stroke="#00D084" strokeWidth="3" fill="none" />
-          <path d="M 470 240 L 470 280" stroke="#1E3048" strokeWidth="3" fill="none" />
-
-          {/* Zones */}
+          {/* Render Plant Zone Polygons */}
           {zones.map((z) => {
             const isSel = selectedZone === z.key;
-            const isCrit = z.risk === 'CRITICAL' || (z.key === 'COKE_OVEN_BATTERY_1' && mode !== 'NORMAL');
+            const styles = getPolygonColor(z.risk, isSel);
+
             return (
-              <g
+              <Polygon
                 key={z.key}
-                onClick={() => onSelectZone(z.key)}
-                className="cursor-pointer transition-transform hover:opacity-90"
+                positions={z.positions}
+                pathOptions={{
+                  color: styles.color,
+                  fillColor: styles.fillColor,
+                  fillOpacity: styles.fillOpacity,
+                  weight: isSel ? 3 : 2,
+                  dashArray: z.risk === 'CRITICAL' ? '6, 6' : undefined
+                }}
+                eventHandlers={{
+                  click: () => onSelectZone(z.key)
+                }}
               >
-                <rect
-                  x={z.x}
-                  y={z.y}
-                  width={z.w}
-                  height={z.h}
-                  rx="12"
-                  fill={getZoneFill(isCrit ? 'CRITICAL' : z.risk, isSel)}
-                  stroke={getZoneStroke(isCrit ? 'CRITICAL' : z.risk, isSel)}
-                  strokeWidth={isSel ? "3" : "2"}
-                  className={isCrit ? "animate-pulse" : ""}
-                />
-                <text x={z.x + 16} y={z.y + 28} fill="white" fontWeight="bold" fontSize="14" fontFamily="Inter">
-                  {z.name}
-                </text>
-                <text x={z.x + 16} y={z.y + 48} fill="#6B8096" fontSize="11" fontFamily="JetBrains Mono">
-                  ZONE ID: {z.key.substring(0, 10)}...
-                </text>
+                <Tooltip direction="center" permanent className="font-mono text-[10px] bg-black/80 text-white border-0 shadow-none">
+                  {z.id} [{z.risk}]
+                </Tooltip>
 
-                {/* Worker badge */}
-                <rect x={z.x + z.w - 75} y={z.y + 12} width="60" height="24" rx="6" fill="#162032" stroke="#1E3048" strokeWidth="1" />
-                <text x={z.x + z.w - 65} y={z.y + 28} fill="#FFB800" fontSize="11" fontWeight="bold" fontFamily="JetBrains Mono">
-                  👥 {z.workers}
-                </text>
-
-                {/* Alert Beacon icon */}
-                {isCrit && (
-                  <circle cx={z.x + z.w/2} cy={z.y + z.h/2 + 10} r="20" fill="#FF1744" className="animate-ping opacity-75" />
-                )}
-              </g>
+                <Popup className="font-mono text-xs">
+                  <div className="p-1 space-y-1 bg-slate-900 text-white rounded">
+                    <span className="text-[10px] font-black text-sentinel-accent block uppercase">{z.hazard}</span>
+                    <h4 className="font-bold text-sm">{z.name}</h4>
+                    <p className="text-slate-300">Active Occupancy: <b className="text-amber-400">{z.workers} Personnel</b></p>
+                    <p className="text-[10px] text-slate-400">Compound AI Score: {(score*100).toFixed(0)}% Index</p>
+                  </div>
+                </Popup>
+              </Polygon>
             );
           })}
-        </svg>
 
-        <div className="absolute bottom-4 left-4 p-3 bg-sentinel-surface/90 border border-sentinel-border rounded-lg text-[11px] font-mono text-sentinel-muted">
-          CLICK ANY POLYGON FOR TELEMETRY DRILLDOWN & ACTIVE PERMITS
-        </div>
+          {/* Render Wind Plume Dispersion Polyline if Critical */}
+          {isDanger && (
+            <Polyline
+              positions={plumeLine}
+              pathOptions={{
+                color: '#FFB300',
+                weight: 4,
+                dashArray: '8, 8'
+              }}
+            >
+              <Tooltip sticky>🚨 IDLH Toxic H2S Gas Dispersion Vector (Wind 14.5 km/h SE)</Tooltip>
+            </Polyline>
+          )}
+        </MapContainer>
+      </div>
+
+      <div className="mt-3 flex justify-between items-center text-[11px] text-sentinel-muted px-2">
+        <span>✨ Click any WGS84 GIS polygon to inspect SIMOPS permit conflicts and real-time outgassing sensor telemetry.</span>
+        <span className="text-emerald-400 font-bold">✓ Leaflet 4.2 GIS Integration Active</span>
       </div>
     </div>
   );
