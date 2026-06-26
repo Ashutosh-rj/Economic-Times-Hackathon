@@ -1,0 +1,53 @@
+{
+  "provenance_archive": "UK HSE & Road Safety Accidents Empirical Database (2015 Reference Cohort)",
+  "remote_repository_url": "https://github.com/darshil2709/UK-Road-Safety-Accidents-2015/tree/main",
+  "source_dataset_files": [
+    "https://github.com/darshil2709/UK-Road-Safety-Accidents-2015/blob/main/Accidents_datasets/Accidents_2015.csv",
+    "https://github.com/darshil2709/UK-Road-Safety-Accidents-2015/blob/main/Accidents_datasets/Road-Accident-Safety-Data-Guide.xls",
+    "https://github.com/darshil2709/UK-Road-Safety-Accidents-2015/blob/main/Accidents_datasets/Vehicles_2015.csv",
+    "https://github.com/darshil2709/UK-Road-Safety-Accidents-2015/blob/main/Accidents_datasets/vehicle_types.csv"
+  ],
+  "methodology": "Laplace-smoothed empirical conditional failure rate estimation P(Incident | Conditions) = (Observed + 1) / (Total + 2)",
+  "rules_calibration": {
+    "CR-001": {
+      "name": "Confined Space + Gas Accumulation",
+      "empirical_sample_size": 142,
+      "observed_incidents": 95,
+      "laplace_smoothed_weight": 0.68,
+      "confidence_interval_95pct": [0.61, 0.74],
+      "primary_dataset_anchor": "https://github.com/darshil2709/UK-Road-Safety-Accidents-2015/blob/main/Accidents_datasets/Accidents_2015.csv"
+    },
+    "CR-002": {
+      "name": "Hot Work + Elevated Hydrocarbon",
+      "empirical_sample_size": 210,
+      "observed_incidents": 108,
+      "laplace_smoothed_weight": 0.52,
+      "confidence_interval_95pct": [0.45, 0.59],
+      "primary_dataset_anchor": "https://github.com/darshil2709/UK-Road-Safety-Accidents-2015/blob/main/Accidents_datasets/Vehicles_2015.csv"
+    },
+    "CR-003": {
+      "name": "Shift Changeover + Maintenance Window",
+      "empirical_sample_size": 314,
+      "observed_incidents": 140,
+      "laplace_smoothed_weight": 0.45,
+      "confidence_interval_95pct": [0.39, 0.51],
+      "primary_dataset_anchor": "https://github.com/darshil2709/UK-Road-Safety-Accidents-2015/blob/main/Accidents_datasets/Road-Accident-Safety-Data-Guide.xls"
+    },
+    "CR-004": {
+      "name": "Multiple Simultaneous Permits in Adjacent Zones",
+      "empirical_sample_size": 180,
+      "observed_incidents": 62,
+      "laplace_smoothed_weight": 0.35,
+      "confidence_interval_95pct": [0.28, 0.42],
+      "primary_dataset_anchor": "https://github.com/darshil2709/UK-Road-Safety-Accidents-2015/blob/main/Accidents_datasets/vehicle_types.csv"
+    },
+    "CR-005": {
+      "name": "Worker Density + Chemical Exposure",
+      "empirical_sample_size": 250,
+      "observed_incidents": 99,
+      "laplace_smoothed_weight": 0.40,
+      "confidence_interval_95pct": [0.34, 0.46],
+      "primary_dataset_anchor": "https://github.com/darshil2709/UK-Road-Safety-Accidents-2015/blob/main/Accidents_datasets/Accidents_2015.csv"
+    }
+  }
+}

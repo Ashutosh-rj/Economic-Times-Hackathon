@@ -51,3 +51,12 @@ htmlcov/
 *.swo
 .DS_Store
 Thumbs.db
+
+# Agent & Hackathon Scratch Files
+.gemini/
+brain/
+.system_generated/
+scratch/
+*.scratch.*
+tmp/
+temp/
