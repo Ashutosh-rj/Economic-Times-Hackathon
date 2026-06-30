@@ -22,9 +22,14 @@ class QualityComplianceAuditAgent:
         self.llm = None
         if HAS_GENAI and self.api_key:
             try:
-                self.llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.1, google_api_key=self.api_key)
+                from config import settings
+                model_name = getattr(settings, "GEMINI_MODEL", "gemini-2.5-flash-lite")
+                self.llm = ChatGoogleGenerativeAI(model=model_name, temperature=0.1, google_api_key=self.api_key)
             except Exception:
-                self.llm = None
+                try:
+                    self.llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite", temperature=0.1, google_api_key=self.api_key)
+                except Exception:
+                    self.llm = None
 
     def audit_facility_compliance(self, mode: str = "PRE_INCIDENT", active_permits_count: int = 2) -> Dict[str, Any]:
         now = datetime.datetime.utcnow().isoformat()

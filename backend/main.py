@@ -15,8 +15,8 @@ async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
     print("Database tables verified.")
     
-    rag_store.init_store()
-    print("Incident RAG vector store loaded.")
+    asyncio.create_task(asyncio.to_thread(rag_store.init_store))
+    print("Incident RAG vector store initialization launched in background.")
     
     async def graph_callback(state_update):
         try:

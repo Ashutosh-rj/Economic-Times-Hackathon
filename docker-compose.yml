@@ -8,6 +8,7 @@ services:
       - SIMULATION_MODE=PRE_INCIDENT
       - DATABASE_URL=sqlite:///./sentinel.db
       - CHROMA_PERSIST_DIR=./chroma_db
+      - ANONYMIZED_TELEMETRY=False
     volumes:
       - ./backend/sentinel.db:/app/sentinel.db
       - ./backend/chroma_db:/app/chroma_db

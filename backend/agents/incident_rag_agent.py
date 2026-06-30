@@ -36,8 +36,12 @@ Format your answer as:
         try:
             import google.generativeai as genai
             genai.configure(api_key=settings.GEMINI_API_KEY)
-            model = genai.GenerativeModel("gemini-2.0-flash")
-            response = await asyncio.to_thread(model.generate_content, prompt)
+            try:
+                model = genai.GenerativeModel(settings.GEMINI_MODEL)
+                response = await asyncio.to_thread(model.generate_content, prompt)
+            except Exception:
+                model = genai.GenerativeModel("gemini-2.5-flash-lite")
+                response = await asyncio.to_thread(model.generate_content, prompt)
             return RAGResponse(answer=response.text.strip(), sources=sources)
         except Exception as e:
             print(f"RAG Gemini fallback: {e}")

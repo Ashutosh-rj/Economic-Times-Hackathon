@@ -51,8 +51,12 @@ Reference OISD/Factory Act/DGMS standards by name.
         try:
             import google.generativeai as genai
             genai.configure(api_key=settings.GEMINI_API_KEY)
-            model = genai.GenerativeModel("gemini-2.0-flash")
-            response = await asyncio.to_thread(model.generate_content, prompt)
+            try:
+                model = genai.GenerativeModel(settings.GEMINI_MODEL)
+                response = await asyncio.to_thread(model.generate_content, prompt)
+            except Exception:
+                model = genai.GenerativeModel("gemini-2.5-flash-lite")
+                response = await asyncio.to_thread(model.generate_content, prompt)
             return response.text.strip()
         except Exception as e:
             print(f"Gemini generation error (fallback narrative used): {e}")
@@ -61,9 +65,31 @@ Reference OISD/Factory Act/DGMS standards by name.
     return f"CRITICAL COMPOUND HAZARD DETECTED: {rule_name} has materialized in Coke Oven Battery #1 due to concurrent H2S outgassing (18.4 ppm) and active confined space occupancy. This condition presents an acute asphyxiation trap violating {reg} and mirroring the fatality mechanism observed at Vizag Steel Plant. Estimated operational lead time before atmospheric lethality threshold breach is {lead_time} minutes. Immediate Action Required: Automatically trip forced ventilation backup interlock and issue immediate radio evacuation broadcast to all personnel in Zone COB1."
 
 async def compound_risk_node(state: Dict[str, Any]) -> Dict[str, Any]:
-    # Ensure triggered rules and score are present
-    rules = state.get("compound_risks", [])
-    score = state.get("current_risk_score", 0.12)
+    rules = state.get("compound_risks")
+    score = state.get("current_risk_score")
+    if score is None or not rules:
+        try:
+            from core.risk_engine import evaluate_compound_risks
+            from core.sensor_simulator import sensor_simulator
+            from core.cmms_stream import cmms_stream
+            risk_res = evaluate_compound_risks(
+                sensor_snapshot=state.get("sensor_snapshot", {}),
+                active_permits=state.get("active_permits", []),
+                shift_status=state.get("shift_status", {}),
+                maintenance_log=cmms_stream.get_active_work_orders(sensor_simulator.mode),
+                worker_locations=state.get("worker_locations", []),
+                simulation_mode=sensor_simulator.mode
+            )
+            if score is None:
+                score = risk_res.get("risk_score", 0.12)
+            if not rules:
+                rules = risk_res.get("triggered_rules", [])
+        except Exception as e:
+            pass
+    if score is None:
+        score = 0.12
+    if rules is None:
+        rules = []
 
     narrative = await generate_risk_narrative({
         "sensor_snapshot": state.get("sensor_snapshot", {}),

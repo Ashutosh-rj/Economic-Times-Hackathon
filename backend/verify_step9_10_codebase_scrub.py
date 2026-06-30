@@ -6,7 +6,8 @@ def scan_entire_repo():
     print("SENTINEL AI - STEP 9-10 REPOSITORY-WIDE CREDIBILITY & TRIAGE AUDIT")
     print("===========================================================================")
 
-    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    curr_dir = os.path.abspath(os.path.dirname(__file__))
+    repo_root = os.path.abspath(os.path.join(curr_dir, "..")) if os.path.exists(os.path.join(curr_dir, "..", "backend")) else curr_dir
     
     prohibited_strings = [
         "Road Safety", "Accidents_2015", "batdal", "BATADAL", 
@@ -51,7 +52,7 @@ def scan_entire_repo():
 
     # 2. Assert Must-Keep Core Engines are Functionally Operational
     print("\n[2] Asserting Must-Keep Core Engines (RAG, Permit Agent, Noisy-OR, UI/Demo API):")
-    sys.path.insert(0, os.path.join(repo_root, "backend"))
+    sys.path.insert(0, os.path.join(repo_root, "backend") if os.path.exists(os.path.join(repo_root, "backend")) else repo_root)
     
     # 2a. Noisy-OR Engine with Honest Weights
     try:

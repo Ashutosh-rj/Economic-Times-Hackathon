@@ -5,12 +5,10 @@ import { useAlertStore } from '../store/alertStore';
 export const useWebSocket = () => {
   const wsSensorRef = useRef<WebSocket | null>(null);
   const wsAlertRef = useRef<WebSocket | null>(null);
-  const updateFromStream = useSensorStore((state) => state.updateFromStream);
-  const setIsConnected = useSensorStore((state) => state.setIsConnected);
-  const addAlert = useAlertStore((state) => state.addAlert);
 
   useEffect(() => {
-    let reconnectTimeout: any;
+    let reconnectTimeoutSensor: any;
+    let reconnectTimeoutAlert: any;
 
     const connectSensor = () => {
       try {
@@ -22,28 +20,28 @@ export const useWebSocket = () => {
         wsSensorRef.current = new WebSocket(url);
 
         wsSensorRef.current.onopen = () => {
-          setIsConnected(true);
+          useSensorStore.getState().setIsConnected(true);
         };
 
         wsSensorRef.current.onmessage = (event) => {
           try {
             const data = JSON.parse(event.data);
-            updateFromStream(data);
+            useSensorStore.getState().updateFromStream(data);
           } catch (err) {
             console.error("WS Sensor parse error:", err);
           }
         };
 
         wsSensorRef.current.onclose = () => {
-          setIsConnected(false);
-          reconnectTimeout = setTimeout(connectSensor, 3000);
+          useSensorStore.getState().setIsConnected(false);
+          reconnectTimeoutSensor = setTimeout(connectSensor, 3000);
         };
 
         wsSensorRef.current.onerror = () => {
           wsSensorRef.current?.close();
         };
       } catch (e) {
-        reconnectTimeout = setTimeout(connectSensor, 3000);
+        reconnectTimeoutSensor = setTimeout(connectSensor, 3000);
       }
     };
 
@@ -60,7 +58,7 @@ export const useWebSocket = () => {
           try {
             const data = JSON.parse(event.data);
             if (data && data.rule_id) {
-              addAlert({
+              useAlertStore.getState().addAlert({
                 id: Date.now(),
                 rule_id: data.rule_id,
                 zone_id: data.zone_id || 'COKE_OVEN_BATTERY_1',
@@ -77,7 +75,7 @@ export const useWebSocket = () => {
         };
 
         wsAlertRef.current.onclose = () => {
-          setTimeout(connectAlert, 5000);
+          reconnectTimeoutAlert = setTimeout(connectAlert, 5000);
         };
       } catch (e) {}
     };
@@ -86,9 +84,16 @@ export const useWebSocket = () => {
     connectAlert();
 
     return () => {
-      clearTimeout(reconnectTimeout);
-      wsSensorRef.current?.close();
-      wsAlertRef.current?.close();
+      clearTimeout(reconnectTimeoutSensor);
+      clearTimeout(reconnectTimeoutAlert);
+      if (wsSensorRef.current) {
+        wsSensorRef.current.onclose = null;
+        wsSensorRef.current.close();
+      }
+      if (wsAlertRef.current) {
+        wsAlertRef.current.onclose = null;
+        wsAlertRef.current.close();
+      }
     };
-  }, [updateFromStream, setIsConnected, addAlert]);
+  }, []);
 };

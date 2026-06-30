@@ -18,6 +18,7 @@ interface AlertStoreState {
   addAlert: (alert: AlertItem) => void;
   setAlerts: (alerts: AlertItem[]) => void;
   acknowledgeAlert: (id: number) => void;
+  acknowledgeAllAlerts: () => void;
 }
 
 export const useAlertStore = create<AlertStoreState>((set) => ({
@@ -39,5 +40,8 @@ export const useAlertStore = create<AlertStoreState>((set) => ({
   setAlerts: (alerts) => set({ alerts }),
   acknowledgeAlert: (id) => set((state) => ({
     alerts: state.alerts.map((a) => a.id === id ? { ...a, acknowledged: true } : a)
+  })),
+  acknowledgeAllAlerts: () => set((state) => ({
+    alerts: state.alerts.map((a) => ({ ...a, acknowledged: true }))
   })),
 }));

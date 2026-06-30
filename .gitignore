@@ -13,6 +13,7 @@ eggs/
 *.egg
 
 # Virtual environments
+.venv/
 venv/
 env/
 ENV/
@@ -52,8 +53,10 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
-# Agent & Hackathon Scratch Files
+# Large Datasets & Agent Scratch Files
+dataset/
 .gemini/
+.agents/
 brain/
 .system_generated/
 scratch/

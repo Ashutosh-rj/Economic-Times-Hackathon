@@ -35,7 +35,10 @@ class IncidentVectorStore:
             import chromadb
             from sentence_transformers import SentenceTransformer
             
-            client = chromadb.PersistentClient(path=settings.CHROMA_PERSIST_DIR)
+            client = chromadb.PersistentClient(
+                path=settings.CHROMA_PERSIST_DIR,
+                settings=chromadb.Settings(anonymized_telemetry=False)
+            )
             self.embedder = SentenceTransformer("all-MiniLM-L6-v2")
             self.collection = client.get_or_create_collection(name="sentinel_incident_corpus")
             

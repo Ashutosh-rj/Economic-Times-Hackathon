@@ -93,8 +93,12 @@ Respond ONLY in valid JSON matching schema:
         try:
             import google.generativeai as genai
             genai.configure(api_key=settings.GEMINI_API_KEY)
-            model = genai.GenerativeModel("gemini-2.0-flash")
-            response = await asyncio.to_thread(model.generate_content, prompt)
+            try:
+                model = genai.GenerativeModel(settings.GEMINI_MODEL)
+                response = await asyncio.to_thread(model.generate_content, prompt)
+            except Exception:
+                model = genai.GenerativeModel("gemini-2.5-flash-lite")
+                response = await asyncio.to_thread(model.generate_content, prompt)
             txt = response.text.strip()
             if txt.startswith("```json"): txt = txt[7:-3].strip()
             elif txt.startswith("```"): txt = txt[3:-3].strip()

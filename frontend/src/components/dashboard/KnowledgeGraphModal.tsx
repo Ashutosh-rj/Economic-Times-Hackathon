@@ -8,43 +8,69 @@ interface GraphModalProps {
 }
 
 export const KnowledgeGraphModal: React.FC<GraphModalProps> = ({ isOpen, onClose }) => {
-  const [graph, setGraph] = useState<any>(null);
+  const defaultGraph = {
+    metadata: {
+      title: "SENTINEL Digital Twin SIMOPS & LangGraph Ontology Graph",
+      description: "NetworkX Differentiator fusing Physical Equipment, Active Permits, Statutory Regulations, and Autonomous LangGraph Agents."
+    },
+    nodes: [
+      { id: "EQ_BLOWER_1", label: "Exhaust Blower #1 (4200 CFM)", group: "EQUIPMENT", status: "TRIPPED_RISK" },
+      { id: "EQ_HEADER_H1", label: "Primary Coke Gas Header H1", group: "EQUIPMENT", status: "TOXIC_LEAK" },
+      { id: "PTW_CS_001", label: "Confined Space Entry #PTW-001", group: "PERMIT", status: "AUTO_REVOKED" },
+      { id: "PTW_HW_204", label: "Hot Work Spark Permit #PTW-204", group: "PERMIT", status: "SUSPENDED" },
+      { id: "RSK_CR001", label: "Compound Rule CR-001 (SIMOPS Trap)", group: "RISK_RULE", status: "FIRED_CRITICAL" },
+      { id: "REG_OISD_105", label: "OISD-STD-105 Sec 6.3 Statute", group: "REGULATION", status: "GOVERNING_STATUTE" },
+      { id: "REG_OSHA_1910", label: "OSHA 29 CFR 1910.146 Confined Space", group: "REGULATION", status: "GOVERNING_STATUTE" },
+      { id: "AGT_SENSOR", label: "IoT Sensor Ingestion Agent", group: "LANGGRAPH_AGENT", status: "ACTIVE_LOOP" },
+      { id: "AGT_RISK", label: "Bayesian Causal Risk Agent", group: "LANGGRAPH_AGENT", status: "DAG_POSTERIOR_0.98" },
+      { id: "AGT_ROUTER", label: "Supervisor Router Agent", group: "LANGGRAPH_AGENT", status: "INTERLOCK_ENGAGED" },
+      { id: "AGT_PTW", label: "Permit Intelligence Agent", group: "LANGGRAPH_AGENT", status: "STATUTORY_DENIAL" },
+      { id: "AGT_EMERGENCY", label: "Emergency Orchestrator Agent", group: "LANGGRAPH_AGENT", status: "WEBHOOKS_DISPATCHED" }
+    ],
+    links: [
+      { source: "EQ_HEADER_H1", target: "RSK_CR001", relation: "TRIGGERS_TOXIC_OUTGASSING" },
+      { source: "EQ_BLOWER_1", target: "RSK_CR001", relation: "VENTILATION_LOSS_FACTOR" },
+      { source: "PTW_CS_001", target: "RSK_CR001", relation: "CONFINED_SPACE_OCCUPANCY" },
+      { source: "PTW_HW_204", target: "RSK_CR001", relation: "SIMOPS_SPARK_CLASH" },
+      { source: "RSK_CR001", target: "REG_OISD_105", relation: "BREACHES_SAFETY_STATUTE" },
+      { source: "RSK_CR001", target: "REG_OSHA_1910", relation: "BREACHES_SAFETY_STATUTE" },
+      { source: "AGT_SENSOR", target: "AGT_RISK", relation: "FEEDS_TELEMETRY_SNAPSHOT" },
+      { source: "AGT_RISK", target: "AGT_ROUTER", relation: "EMITS_RISK_POSTERIOR" },
+      { source: "AGT_ROUTER", target: "AGT_PTW", relation: "INVOKES_PERMIT_INTERLOCK" },
+      { source: "AGT_ROUTER", target: "AGT_EMERGENCY", relation: "TRIGGERS_AUTONOMOUS_SIRENS" }
+    ]
+  };
+
+  const [graph, setGraph] = useState<any>(defaultGraph);
 
   useEffect(() => {
     if (isOpen) {
-      axios.get('http://localhost:8000/api/graph/topology')
-        .then(res => setGraph(res.data))
+      const protocol = window.location.protocol === 'https:' ? 'https:' : 'http:';
+      const host = window.location.hostname || 'localhost';
+      const apiUrl = `${protocol}//${host}:8000`;
+      axios.get(`${apiUrl}/api/graph/topology`)
+        .then(res => { if (res.data && res.data.nodes) setGraph(res.data); })
         .catch(() => {
-          setGraph({
-            metadata: { title: "SENTINEL Digital Twin SIMOPS Knowledge Graph" },
-            nodes: [
-              { id: "EQ_BLOWER_1", label: "Exhaust Blower #1", group: "EQUIPMENT", status: "TRIPPED_RISK" },
-              { id: "EQ_HEADER_H1", label: "Primary Gas Header H1", group: "EQUIPMENT", status: "TOXIC_LEAK" },
-              { id: "PTW_CS_001", label: "Confined Space Entry #PTW-001", group: "PERMIT", status: "AUTO_REVOKED" },
-              { id: "RSK_CR001", label: "Compound Rule CR-001", group: "RISK_RULE", status: "FIRED_CRITICAL" },
-              { id: "REG_OISD_105", label: "OISD-STD-105 Sec 6.3", group: "REGULATION", status: "GOVERNING_STATUTE" }
-            ],
-            links: [
-              { source: "EQ_HEADER_H1", target: "RSK_CR001", relation: "TRIGGERS_TOXIC_ESCALATION" },
-              { source: "PTW_CS_001", target: "RSK_CR001", relation: "CONJUNCTION_OCCUPANCY" },
-              { source: "RSK_CR001", target: "REG_OISD_105", relation: "STATUTORY_BREACH_ENFORCEMENT" }
-            ]
-          });
+          setGraph(defaultGraph);
         });
     }
   }, [isOpen]);
 
-  if (!isOpen || !graph) return null;
+  if (!isOpen) return null;
 
   const getGroupColor = (g: string) => {
     if (g === 'EQUIPMENT') return 'bg-blue-600 text-white border-blue-400';
     if (g === 'PERMIT') return 'bg-amber-600 text-white border-amber-400';
     if (g === 'RISK_RULE') return 'bg-sentinel-critical text-white border-red-400 animate-pulse';
+    if (g === 'LANGGRAPH_AGENT') return 'bg-purple-600 text-white border-purple-400';
     return 'bg-emerald-600 text-white border-emerald-400';
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-6 animate-fade-in font-mono">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-6 animate-fade-in font-mono"
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+    >
       <div className="bg-sentinel-surface border-2 border-sentinel-accent w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
         <div className="p-5 bg-sentinel-primary border-b border-sentinel-border flex items-center justify-between">
           <div className="flex items-center gap-3 text-sentinel-accent">

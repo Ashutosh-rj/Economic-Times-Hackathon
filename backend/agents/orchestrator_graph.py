@@ -87,7 +87,7 @@ graph.add_conditional_edges(
 graph.add_edge("permit_intelligence", "compliance_agent")
 graph.add_edge("compliance_agent", "alert_emitter")
 graph.add_edge("emergency_orchestrator", "compliance_agent")
-graph.add_edge("alert_emitter", END)
+graph.add_edge("alert_emitter", "rag_agent")
 graph.add_edge("rag_agent", END)
 
 compiled_graph = graph.compile()
